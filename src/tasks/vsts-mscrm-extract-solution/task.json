@@ -23,7 +23,7 @@
 		{
 			"name": "message",
 			"type": "string",
-			"label": "Message",
+			"label": "MessageX",
 			"defaultValue": "Hello World",
 			"required": true,
 			"helpMarkDown": "TODO: Help."
