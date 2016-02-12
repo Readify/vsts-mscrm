@@ -21,13 +21,34 @@
 	"instanceNameFormat": "Pack Solution from $(message)",
 	"inputs": [
 		{
-			"name": "message",
-			"type": "string",
-			"label": "Message",
-			"defaultValue": "Hello World",
+			"name": "folder",
+			"type": "filePath",
+			"label": "Folder",
+			"defaultValue": ".",
 			"required": true,
-			"helpMarkDown": "TODO: Help."
-		}
+			"helpMarkDown": "Path to folder containing solution files."
+		},
+		{
+			"name": "packageType",
+			"type": "radio",
+			"label": "Package Type",
+			"defaultValue": "unmanaged",
+            "options": {
+                "unmanaged": "Unmanaged",
+                "managed": "Managed",
+                "both": "Both"
+            },
+			"required": true,
+			"helpMarkDown": "Type of package to produce."
+		},
+ 		{
+			"name": "zipFile",
+			"type": "filePath",
+			"label": "Zip File",
+			"defaultValue": "",
+			"required": true,
+			"helpMarkDown": "The name of the zip file to produce."
+		}       
 	],
 	"execution": {
 		"PowerShell": {
