@@ -2,7 +2,7 @@
 	"id": "e6a6f2b1-1256-4819-8f1a-5c2b7b4fdd36",
 	"name": "vsts-mscrm-export-solution",
 	"friendlyName": "Export Dynamics CRM Solution",
-	"description": "Exports a solution from a Dynamics CRM instance.",
+	"description": "Exports a solution from a Dynamics CRM instance",
 	"helpMarkDown": "",
 	"category": "Build",
 	"visibility": [

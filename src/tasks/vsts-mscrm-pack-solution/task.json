@@ -2,7 +2,7 @@
 	"id": "d8a13429-d0d4-4aea-837a-82bacbb74cfd",
 	"name": "vsts-mscrm-pack-solution",
 	"friendlyName": "Pack Dynamics CRM Solution",
-	"description": "Packs a Dynamics CRM solution from a set of files.",
+	"description": "Packs a Dynamics CRM solution from a set of files",
 	"helpMarkDown": "",
 	"category": "Build",
 	"visibility": [
