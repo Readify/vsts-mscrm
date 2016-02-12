@@ -3,6 +3,7 @@ var exec = require('child_process').exec;
 var minimist = require('minimist');
 var semver = require('semver');
 var fs = require('fs');
+var glob = require('glob');
 
 // Default version data. Should be replaced as soon as the get-version task runs.
 var version = {
@@ -97,6 +98,22 @@ gulp.task('pack', ['stamp'], function (callback) {
             console.log(stdout);
             callback();            
         }
+    });
+});
+
+gulp.task('publish', function (callback) {
+    glob('**/*.vsix', function (err, files) {
+        var vsix = files[0];
+        var token = args.token;
+        exec('node_modules\\.bin\\tfx.cmd extension publish --vsix ' + vsix + ' --token ' + token, function (err, stdout, stderr) {
+            if (err) {
+                console.log(stderr);
+                callback(err);
+            } else {
+                console.log(stdout);
+                callback();            
+            }
+        });
     });
 });
 
