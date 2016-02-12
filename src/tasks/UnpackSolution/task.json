@@ -1,0 +1,39 @@
+{
+    "id": "66170471-6959-4949-81f7-e224246743bc",
+    "name": "vsts-mscrm-unpack-solution",
+    "friendlyName": "Unpack Dynamics CRM Solution",
+    "description": "Unpacks a Dynamics CRM solution to a set of files.",
+    "helpMarkDown": "",
+    "category": "Build",
+    "visibility": [
+        "Build"
+    ],
+    "author": "Mitch Denny",
+    "version": {
+        "Major": 0,
+        "Minor": 0,
+        "Patch": 1
+    },
+    "demands": [
+        "DotNetFramework"
+    ],
+    "minimumAgentVersion": "1.91.0",
+    "instanceNameFormat": "Unpack Solution to $(message)",
+    "inputs": [
+        {
+            "name": "message",
+            "type": "string",
+            "label": "Message",
+            "defaultValue": "Hello World",
+            "required": true,
+            "helpMarkDown": "TODO: Help."
+        }
+    ],
+    "execution": {
+        "PowerShell": {
+            "target": "$(CurrentDirectory)\\UnpackSolution.ps1",
+            "argumentFormat": "",
+            "workingDirectory": "$(CurrentDirectory)"
+        }
+    }
+}

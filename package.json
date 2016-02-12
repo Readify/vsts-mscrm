@@ -1,0 +1,38 @@
+{
+  "name": "vsts-mscrm",
+  "version": "0.0.1",
+  "description": "An extension to Visual Studio Team Services to assist teams working on Dynamics CRM projects.",
+  "main": "Gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mitchdenny/vsts-mscrm.git"
+  },
+  "keywords": [
+    "crm",
+    "dynamics",
+    "crm",
+    "vsts",
+    "crm",
+    "online",
+    "mscrm",
+    "visual",
+    "studio",
+    "team",
+    "services"
+  ],
+  "author": "Mitch Denny",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mitchdenny/vsts-mscrm/issues"
+  },
+  "homepage": "https://github.com/mitchdenny/vsts-mscrm#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "minimist": "^1.2.0",
+    "semver": "^5.1.0",
+    "tfx-cli": "^0.3.13"
+  }
+}

@@ -1,0 +1,39 @@
+{
+    "id": "e6a6f2b1-1256-4819-8f1a-5c2b7b4fdd36",
+    "name": "vsts-mscrm-export-solution",
+    "friendlyName": "Export Dynamics CRM Solution",
+    "description": "Exports a solution from a Dynamics CRM instance.",
+    "helpMarkDown": "",
+    "category": "Build",
+    "visibility": [
+        "Build"
+    ],
+    "author": "Mitch Denny",
+    "version": {
+        "Major": 0,
+        "Minor": 0,
+        "Patch": 1
+    },
+    "demands": [
+        "DotNetFramework"
+    ],
+    "minimumAgentVersion": "1.91.0",
+    "instanceNameFormat": "Export Solution from $(message)",
+    "inputs": [
+        {
+            "name": "message",
+            "type": "string",
+            "label": "Message",
+            "defaultValue": "Hello World",
+            "required": true,
+            "helpMarkDown": "TODO: Help."
+        }
+    ],
+    "execution": {
+        "PowerShell": {
+            "target": "$(CurrentDirectory)\\ExportSolution.ps1",
+            "argumentFormat": "",
+            "workingDirectory": "$(CurrentDirectory)"
+        }
+    }
+}
