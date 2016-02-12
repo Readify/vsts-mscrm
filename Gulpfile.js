@@ -81,7 +81,13 @@ gulp.task('stamp', ['stamp-manifest', 'stamp-export-solution-task', 'stamp-impor
 
 gulp.task('pack', ['stamp'], function (callback) {
     exec('node_modules\\.bin\\tfx.cmd extension create --root src', function (err, stdout, stderr) {
-        callback();        
+        if (err) {
+            console.log(stderr);
+            callback(err);
+        } else {
+            console.log(stdout);
+            callback();            
+        }
     });
 });
 
