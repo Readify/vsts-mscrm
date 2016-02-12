@@ -1,0 +1,39 @@
+{
+	"id": "d8a13429-d0d4-4aea-837a-82bacbb74cfd",
+	"name": "vsts-mscrm-pack-solution",
+	"friendlyName": "Pack Dynamics CRM Solution",
+	"description": "Packs a Dynamics CRM solution from a set of files.",
+	"helpMarkDown": "",
+	"category": "Build",
+	"visibility": [
+		"Build"
+	],
+	"author": "Mitch Denny",
+	"version": {
+		"Major": 0,
+		"Minor": 0,
+		"Patch": 1
+	},
+	"demands": [
+		"DotNetFramework"
+	],
+	"minimumAgentVersion": "1.91.0",
+	"instanceNameFormat": "Pack Solution from $(message)",
+	"inputs": [
+		{
+			"name": "message",
+			"type": "string",
+			"label": "Message",
+			"defaultValue": "Hello World",
+			"required": true,
+			"helpMarkDown": "TODO: Help."
+		}
+	],
+	"execution": {
+		"PowerShell": {
+			"target": "$(CurrentDirectory)\\PackSolution.ps1",
+			"argumentFormat": "",
+			"workingDirectory": "$(CurrentDirectory)"
+		}
+	}
+}

@@ -1,75 +1,75 @@
 {
-    "manifestVersion": 1,
-    "id": "vsts-mscrm",
-    "name": "Dynamics CRM for Visual Studio Team Services",
-    "version": "0.0.1",
-    "publisher": "mitchdenny",
-    "targets": [
-        {
-            "id": "Microsoft.VisualStudio.Services"
-        }
-    ],
-    "description": "An extension to Visual Studio Team Services to assist teams working on Dynamics CRM projects.",
-    "categories": [
-        "Build and release"
-    ],
-    "icons": {
-        "default": "extension-icon.png"
-    },
-    "files": [
-        {
-            "path": "tasks\\PackSolution"
-        },
-        {
-            "path": "tasks\\UnpackSolution"
-        },
-        {
-            "path": "tasks\\ImportSolution"
-        },
-        {
-            "path": "tasks\\ExportSolution"
-        }
-    ],
-    "contributions": [
-        {
-            "id": "vsts-mscrm-pack-solution",
-            "type": "ms.vss-distributed-task.task",
-            "targets": [
-                "ms.vss-distributed-task.tasks"
-            ],
-            "properties": {
-                "name": "Pack Dynamics CRM Solution"
-            }
-        },
-        {
-            "id": "vsts-mscrm-unpack-solution",
-            "type": "ms.vss-distributed-task.task",
-            "targets": [
-                "ms.vss-distributed-task.tasks"
-            ],
-            "properties": {
-                "name": "Unpack Dynamics CRM Solution"
-            }
-        },
-        {
-            "id": "vsts-mscrm-import-solution",
-            "type": "ms.vss-distributed-task.task",
-            "targets": [
-                "ms.vss-distributed-task.tasks"
-            ],
-            "properties": {
-                "name": "Import Dynamics CRM Solution"
-            }
-        },
-        {
-            "id": "vsts-mscrm-export-solution",
-            "type": "ms.vss-distributed-task.task",
-            "targets": [
-                "ms.vss-distributed-task.tasks"
-            ],
-            "properties": {
-                "name": "Export Dynamics CRM Solution"
-            }
-        }
-    ]
+	"manifestVersion": 1,
+	"id": "vsts-mscrm",
+	"name": "Dynamics CRM for Visual Studio Team Services",
+	"version": "0.0.1",
+	"publisher": "mitchdenny",
+	"targets": [
+		{
+			"id": "Microsoft.VisualStudio.Services"
+		}
+	],
+	"description": "An extension to Visual Studio Team Services to assist teams working on Dynamics CRM projects.",
+	"categories": [
+		"Build and release"
+	],
+	"icons": {
+		"default": "extension-icon.png"
+	},
+	"files": [
+		{
+			"path": "tasks/vsts-mscrm-export-solution"
+		},
+		{
+			"path": "tasks/vsts-mscrm-import-solution"
+		},
+		{
+			"path": "tasks/vsts-mscrm-pack-solution"
+		},
+		{
+			"path": "tasks/vsts-mscrm-unpack-solution"
+		}
+	],
+	"contributions": [
+		{
+			"id": "vsts-mscrm-pack-solution",
+			"type": "ms.vss-distributed-task.task",
+			"targets": [
+				"ms.vss-distributed-task.tasks"
+			],
+			"properties": {
+				"name": "tasks/vsts-mscrm-pack-solution"
+			}
+		},
+		{
+			"id": "vsts-mscrm-unpack-solution",
+			"type": "ms.vss-distributed-task.task",
+			"targets": [
+				"ms.vss-distributed-task.tasks"
+			],
+			"properties": {
+				"name": "tasks/vsts-mscrm-unpack-solution"
+			}
+		},
+		{
+			"id": "vsts-mscrm-import-solution",
+			"type": "ms.vss-distributed-task.task",
+			"targets": [
+				"ms.vss-distributed-task.tasks"
+			],
+			"properties": {
+				"name": "tasks/vsts-mscrm-import-solution"
+			}
+		},
+		{
+			"id": "vsts-mscrm-export-solution",
+			"type": "ms.vss-distributed-task.task",
+			"targets": [
+				"ms.vss-distributed-task.tasks"
+			],
+			"properties": {
+				"name": "tasks/vsts-mscrm-export-solution"
+			}
+		}
+	]
 }
