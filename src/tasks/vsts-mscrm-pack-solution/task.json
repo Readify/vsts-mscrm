@@ -18,7 +18,7 @@
 		"DotNetFramework"
 	],
 	"minimumAgentVersion": "1.91.0",
-	"instanceNameFormat": "Pack Solution from $(message)",
+	"instanceNameFormat": "Pack Solution",
 	"inputs": [
 		{
 			"name": "folder",
