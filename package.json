@@ -30,6 +30,7 @@
   },
   "homepage": "https://github.com/mitchdenny/vsts-mscrm#readme",
   "devDependencies": {
+    "glob": "^7.0.0",
     "gulp": "^3.9.1",
     "minimist": "^1.2.0",
     "semver": "^5.1.0",
