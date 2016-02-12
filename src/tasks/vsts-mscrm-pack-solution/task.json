@@ -4,9 +4,9 @@
 	"friendlyName": "Pack Dynamics CRM Solution",
 	"description": "Packs a Dynamics CRM solution from a set of files",
 	"helpMarkDown": "",
-	"category": "Build",
+	"category": "Package",
 	"visibility": [
-		"Build"
+		"Package"
 	],
 	"author": "Mitch Denny",
 	"version": {
