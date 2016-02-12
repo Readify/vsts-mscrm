@@ -27,7 +27,7 @@
 			"path": "tasks/vsts-mscrm-pack-solution"
 		},
 		{
-			"path": "tasks/vsts-mscrm-unpack-solution"
+			"path": "tasks/vsts-mscrm-extract-solution"
 		}
 	],
 	"contributions": [
@@ -42,13 +42,13 @@
 			}
 		},
 		{
-			"id": "vsts-mscrm-unpack-solution",
+			"id": "vsts-mscrm-extract-solution",
 			"type": "ms.vss-distributed-task.task",
 			"targets": [
 				"ms.vss-distributed-task.tasks"
 			],
 			"properties": {
-				"name": "tasks/vsts-mscrm-unpack-solution"
+				"name": "tasks/vsts-mscrm-extract-solution"
 			}
 		},
 		{

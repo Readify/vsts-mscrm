@@ -80,12 +80,12 @@ gulp.task('stamp-pack-solution-task', ['get-version'], function (callback) {
     callback(); 
 });
 
-gulp.task('stamp-unpack-solution-task', ['get-version'], function (callback) {
-    stampTaskJson('src\\tasks\\vsts-mscrm-unpack-solution\\task.json');
+gulp.task('stamp-extract-solution-task', ['get-version'], function (callback) {
+    stampTaskJson('src\\tasks\\vsts-mscrm-extract-solution\\task.json');
     callback(); 
 });
 
-gulp.task('stamp', ['stamp-manifest', 'stamp-export-solution-task', 'stamp-import-solution-task', 'stamp-pack-solution-task', 'stamp-unpack-solution-task'], function(callback) {
+gulp.task('stamp', ['stamp-manifest', 'stamp-export-solution-task', 'stamp-import-solution-task', 'stamp-pack-solution-task', 'stamp-extract-solution-task'], function(callback) {
     callback();
 });
 

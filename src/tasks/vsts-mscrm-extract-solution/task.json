@@ -1,8 +1,8 @@
 {
 	"id": "66170471-6959-4949-81f7-e224246743bc",
-	"name": "vsts-mscrm-unpack-solution",
-	"friendlyName": "Unpack Dynamics CRM Solution",
-	"description": "Unpacks a Dynamics CRM solution to a set of files",
+	"name": "vsts-mscrm-extract-solution",
+	"friendlyName": "Extract Dynamics CRM Solution",
+	"description": "Extracts a Dynamics CRM solution to a set of files",
 	"helpMarkDown": "",
 	"category": "Build",
 	"visibility": [
@@ -18,7 +18,7 @@
 		"DotNetFramework"
 	],
 	"minimumAgentVersion": "1.91.0",
-	"instanceNameFormat": "Unpack Solution to $(message)",
+	"instanceNameFormat": "Extract Solution to $(message)",
 	"inputs": [
 		{
 			"name": "message",
@@ -31,7 +31,7 @@
 	],
 	"execution": {
 		"PowerShell": {
-			"target": "$(CurrentDirectory)\\UnpackSolution.ps1",
+			"target": "$(CurrentDirectory)\\ExtractSolution.ps1",
 			"argumentFormat": "",
 			"workingDirectory": "$(CurrentDirectory)"
 		}
