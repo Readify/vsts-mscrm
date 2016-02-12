@@ -16,12 +16,21 @@ var args = minimist(process.argv);
 
 gulp.task('get-version', function (callback) {
     if (args.overrideversion && semver.valid(args.overrideversion)) {
+        console.log("Using override to get version numbers.");
         version.MajorMinorPatch = args.overrideversion;
         version.Major = semver.major(args.overrideversion);
         version.Minor = semver.minor(args.overrideversion);
         version.Patch = semver.patch(args.overrideversion);
         callback();
+    } else if (process.env.GITVERSION_MajorMinorPatch) {
+        console.log("Environment variables to get version numbers.");
+        version.MajorMinorPatch = process.env.GITVERSION_MajorMinorPatch;
+        version.Major = semver.major(process.env.GITVERSION_MajorMinorPatch);
+        version.Minor = semver.minor(process.env.GITVERSION_MajorMinorPatch);
+        version.Patch = semver.patch(process.env.GITVERSION_MajorMinorPatch);
+        callback();
     } else {
+        console.log("Running GitVersion to get version numbers.");
         exec('gitversion', function(err, stdout, stderr) { 
             version = JSON.parse(stdout);
             callback(err);
