@@ -117,4 +117,23 @@ gulp.task('publish', function (callback) {
     });
 });
 
+gulp.task('share', function (callback) {
+   glob('**/*.vsix', function (err, files) {
+      var vsix = files[0];
+      var publisher = args.publisher;
+      var token = args.token;
+      var sharewith = args.sharewith;
+      
+      exec('node_modules\\.bin\\tfx.cmd extension share --publisher ' + publisher + ' --vsix ' + vsix + ' --token ' + token + ' --share-with ' + sharewith, function (err, stdout, stderr) {
+            if (err) {
+                console.log(stderr);
+                callback(err);
+            } else {
+                console.log(stdout);
+                callback();            
+            }          
+      });
+   });
+});
+
 gulp.task('default', ['pack']);
