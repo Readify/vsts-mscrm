@@ -48,7 +48,15 @@
 			"defaultValue": "",
 			"required": true,
 			"helpMarkDown": "The name of the zip file to produce."
-		}       
+		},
+        {
+            "name": "dummy",
+            "type": "string",
+            "label": "Dummy Value",
+            "defaultValue": "1 + 1 = 3",
+            "required": false,
+            "helpMarkdown": "Just a dummy value."
+        }
 	],
 	"execution": {
 		"PowerShell": {
