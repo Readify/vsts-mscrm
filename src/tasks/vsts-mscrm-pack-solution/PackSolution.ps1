@@ -19,4 +19,4 @@ Write-Host "folder=$folder"
 Write-Host "packageType=$packageType"
 Write-Host "zipFile=$zipFile"
 
-.\tools\SolutionPackager.exe /action:Extract /zipfile:"$zipFile" /packagetype:$packageType /folder:"$folder"
+.\tools\SolutionPackager.exe /action:Pack /zipfile:"$zipFile" /packagetype:$packageType /folder:"$folder"

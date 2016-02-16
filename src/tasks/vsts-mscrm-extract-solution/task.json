@@ -19,14 +19,21 @@
 	],
 	"minimumAgentVersion": "1.91.0",
 	"instanceNameFormat": "Extract Solution to $(message)",
-	"inputs": [
-		{
-			"name": "message",
-			"type": "string",
-			"label": "MessageX",
-			"defaultValue": "Hello World",
+	"inputs": [{
+			"name": "folder",
+			"type": "filePath",
+			"label": "Folder",
+			"defaultValue": ".",
 			"required": true,
-			"helpMarkDown": "TODO: Help."
+			"helpMarkDown": "Path to folder containing solution files."
+		},
+ 		{
+			"name": "zipFile",
+			"type": "filePath",
+			"label": "Zip File",
+			"defaultValue": "",
+			"required": true,
+			"helpMarkDown": "The name of the zip file to produce."
 		}
 	],
 	"execution": {
