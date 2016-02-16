@@ -8,10 +8,7 @@ param
     $packageType,
 
     [String] [Parameter(Mandatory = $true)]
-    $zipFile,
-    
-    [String] [Parameter(Mandatory = $false)]
-    $dummy
+    $zipFile
 )
 
 # Import the Task.Common and Task.Internal dll that has all the cmdlets we need for Build
@@ -21,4 +18,5 @@ import-module "Microsoft.TeamFoundation.DistributedTask.Task.Common"
 Write-Host "folder=$folder"
 Write-Host "packageType=$packageType"
 Write-Host "zipFile=$zipFile"
-Write-Host "dummy=$dummy"
+
+.\tools\SolutionPackager.exe /action:Extract /zipfile:"$zipFile" /packagetype:$packageType /folder:"$folder"
