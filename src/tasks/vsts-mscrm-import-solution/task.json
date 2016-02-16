@@ -4,9 +4,9 @@
 	"friendlyName": "Import Dynamics CRM Solution",
 	"description": "Imports a solution to a Dynamics CRM instance",
 	"helpMarkDown": "",
-	"category": "Build",
+	"category": "Package",
 	"visibility": [
-		"Build"
+		"Package"
 	],
 	"author": "Mitch Denny",
 	"version": {

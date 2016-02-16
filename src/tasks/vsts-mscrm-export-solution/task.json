@@ -4,9 +4,9 @@
 	"friendlyName": "Export Dynamics CRM Solution",
 	"description": "Exports a solution from a Dynamics CRM instance",
 	"helpMarkDown": "",
-	"category": "Build",
+	"category": "Package",
 	"visibility": [
-		"Build"
+		"Package"
 	],
 	"author": "Mitch Denny",
 	"version": {

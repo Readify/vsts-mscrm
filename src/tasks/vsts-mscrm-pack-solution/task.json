@@ -18,7 +18,7 @@
 		"DotNetFramework"
 	],
 	"minimumAgentVersion": "1.91.0",
-	"instanceNameFormat": "Pack Solution",
+	"instanceNameFormat": "Pack CRM solution from $(folder) into $(zipFile)",
 	"inputs": [
 		{
 			"name": "folder",
