@@ -21,10 +21,17 @@
 	"instanceNameFormat": "Export Solution from $(message)",
 	"inputs": [
 		{
-			"name": "message",
+			"name": "connectedServiceName",
+			"type": "connectedService:Generic",
+			"label": "Dynamics CRM Online Endpoint",
+			"required": true,
+			"helpMarkDown": "TODO: Help."
+		},
+        {
+			"name": "zipFile",
 			"type": "string",
-			"label": "Message",
-			"defaultValue": "Hello World",
+			"label": "Zip File",
+			"defaultValue": "",
 			"required": true,
 			"helpMarkDown": "TODO: Help."
 		}

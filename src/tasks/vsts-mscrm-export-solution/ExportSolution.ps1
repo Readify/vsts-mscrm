@@ -2,19 +2,22 @@
 param
 (
     [String] [Parameter(Mandatory = $true)]
-    $connectionString,
+    $connectedServiceName,
 
     [String] [Parameter(Mandatory = $true)]
     $zipFile
 )
 
-Write-Host "connectionString=$connectionString"
+# Import the Task.Common and Task.Internal dll that has all the cmdlets we need for Build
+Import-Module "Microsoft.TeamFoundation.DistributedTask.Task.Internal"
+Import-Module "Microsoft.TeamFoundation.DistributedTask.Task.Common"
+
+Write-Host "connectedServiceName=$connectedServiceName"
 Write-Host "zipFile=$zipFile"
 
-Add-Type -Path "$PSScriptRoot\tools\Microsoft.IdentityModel.Clients.ActiveDirectory.dll"
-Add-Type -Path "$PSScriptRoot\tools\Microsoft.Xrm.Sdk.dll"
-Add-Type -Path "$PSScriptRoot\tools\Microsoft.Xrm.Sdk.Deployment.dll"
-Add-Type -Path "$PSScriptRoot\tools\Microsoft.Xrm.Tooling.Connector.dll"
+$serviceEndpoint = Get-ServiceEndpoint -Context $distributedTaskContext -Name $connectedServiceName
+$url = serviceEndpoint.Url
+$username = $serviceEndpoint.Authorization.Parameters.UserName
+$password = $serviceEndpoint.Authorization.Parameters.Password
 
-$client = New-Object -Type Microsoft.Xrm.Tooling.Connector.CrmServiceClient -Args $connectionString
-$client
+#Import-Module .\tools\Microsoft.Xrm.Data.PowerShell\Microsoft.Xrm.Data.PowerShell.psm1
