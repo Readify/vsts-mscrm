@@ -28,6 +28,22 @@
 			"helpMarkDown": "TODO: Help."
 		},
         {
+			"name": "solutionName",
+			"type": "string",
+			"label": "Solution Name",
+			"defaultValue": "",
+			"required": true,
+			"helpMarkDown": "TODO: Help."
+		},
+        {
+			"name": "publisherName",
+			"type": "string",
+			"label": "Publisher Name",
+			"defaultValue": "",
+			"required": true,
+			"helpMarkDown": "TODO: Help."
+		},
+        {
 			"name": "zipFile",
 			"type": "string",
 			"label": "Zip File",
