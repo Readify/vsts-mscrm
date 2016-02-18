@@ -34,7 +34,7 @@ $securePassword = ConvertTo-SecureString $password -AsPlainText -Force
 $credential = New-Object System.Management.Automation.PSCredential -ArgumentList $username, $securePassword
 
 Write-Output "Importing PowerShell Module..."
-Add-Type .\tools\Microsoft.Xrm.Data.PowerShell\Microsoft.Xrm.Tooling.Connector.dll
+Add-Type -Path .\tools\Microsoft.Xrm.Data.PowerShell\Microsoft.Xrm.Tooling.Connector.dll
 Import-Module .\tools\Microsoft.Xrm.Data.PowerShell\Microsoft.Xrm.Data.PowerShell.psm1
 $connection = Connect-CrmOnline -ServerUrl $url -Credential $credential
 $connection | Format-List
