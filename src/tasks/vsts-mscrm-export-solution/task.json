@@ -51,12 +51,101 @@
             "helpMarkDown": "TODO: Help."
         },
         {
+            "name": "exportAsManaged",
+            "type": "boolean",
+            "label": "Export as Managed",
+            "defaultValue": "False",
+            "required": true,
+            "helpMarkDown": "TODO: Help."
+        },
+        {
             "name": "zipFile",
             "type": "string",
             "label": "Zip File",
             "defaultValue": "",
             "required": true,
             "helpMarkDown": "TODO: Help."
+        },
+        {
+            "name": "exportAutoNumberingSettings",
+            "type": "boolean",
+            "label": "Export Auto Numbering Settings",
+            "defaultValue": "False",
+            "required": true,
+            "helpMarkDown": "TODO: Help.",
+            "groupName": "advanced"
+        },
+        {
+            "name": "exportCalendarSettings",
+            "type": "boolean",
+            "label": "Export Calendar Settings",
+            "defaultValue": "False",
+            "required": true,
+            "helpMarkDown": "TODO: Help.",
+            "groupName": "advanced"
+        },
+        {
+            "name": "exportCustomizationSettings",
+            "type": "boolean",
+            "label": "Export Customization Settings",
+            "defaultValue": "False",
+            "required": true,
+            "helpMarkDown": "TODO: Help.",
+            "groupName": "advanced"
+        },
+        {
+            "name": "exportEmailTrackingSettings",
+            "type": "boolean",
+            "label": "Export Email Tracking Settings",
+            "defaultValue": "False",
+            "required": true,
+            "helpMarkDown": "TODO: Help.",
+            "groupName": "advanced"
+        },
+        {
+            "name": "exportGeneralSettings",
+            "type": "boolean",
+            "label": "Export General Settings",
+            "defaultValue": "False",
+            "required": true,
+            "helpMarkDown": "TODO: Help.",
+            "groupName": "advanced"
+        },
+        {
+            "name": "exportMarketingSettings",
+            "type": "boolean",
+            "label": "Export Marketing Settings",
+            "defaultValue": "False",
+            "required": true,
+            "helpMarkDown": "TODO: Help.",
+            "groupName": "advanced"
+        },
+        {
+            "name": "exportOutlookSynchronizationSettings",
+            "type": "boolean",
+            "label": "Export Outlook Synchronization Settings",
+            "defaultValue": "False",
+            "required": true,
+            "helpMarkDown": "TODO: Help.",
+            "groupName": "advanced"
+        },
+        {
+            "name": "exportRelationshipRolesSettings",
+            "type": "boolean",
+            "label": "Export Relationship Roles Settings",
+            "defaultValue": "False",
+            "required": true,
+            "helpMarkDown": "TODO: Help.",
+            "groupName": "advanced"
+        },
+        {
+            "name": "exportIsvConfigSettings",
+            "type": "boolean",
+            "label": "Export ISV Config Settings",
+            "defaultValue": "False",
+            "required": true,
+            "helpMarkDown": "TODO: Help.",
+            "groupName": "advanced"
         },
         {
             "name": "exportSalesSettings",
