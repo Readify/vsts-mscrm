@@ -99,7 +99,7 @@ Export-CrmSolution `
     -conn $connection `
     -SolutionName $solutionName `
     -SolutionZipFileName $zipFile `
-    -ExportAutoNumberSettings:$exportAutoNumberingSettings `
+    -ExportAutoNumberingSettings:$exportAutoNumberingSettings `
     -ExportCalendarSettings:$exportCalendarSettings `
     -ExportCustomizationSettings:$exportCustomizationSettings `
     -ExportEmailTrackingSettings:$exportEmailTrackingSettings `
