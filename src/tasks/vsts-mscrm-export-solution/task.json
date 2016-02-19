@@ -19,13 +19,6 @@
 	],
 	"minimumAgentVersion": "1.91.0",
 	"instanceNameFormat": "Export Solution from $(message)",
-    "groups": [
-        {
-            "name": "advanced",
-            "displayName": "Advanced",
-            "isExpanded": false
-        }
-    ],
 	"inputs": [
 		{
 			"name": "connectedServiceName",
