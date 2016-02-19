@@ -79,7 +79,7 @@ Write-Host "exportRelationshipRolesSettings=$exportRelationshipRolesSettings"
 Write-Host "exportIsvConfigSettings=$exportIsvConfigSettings"
 Write-Host "exportSalesSettings=$exportSalesSettings"
     
-Write-Output "Getting service endpoint..."
+Write-Host "Getting service endpoint..."
 $serviceEndpoint = Get-ServiceEndpoint -Context $distributedTaskContext -Name $connectedServiceName
 
 $url = $serviceEndpoint.Url
@@ -89,8 +89,23 @@ $password = $serviceEndpoint.Authorization.Parameters.Password
 $securePassword = ConvertTo-SecureString $password -AsPlainText -Force
 $credential = New-Object System.Management.Automation.PSCredential -ArgumentList $username, $securePassword
 
-Write-Output "Importing PowerShell Module..."
-Add-Type -Path .\tools\Microsoft.Xrm.Data.PowerShell\Microsoft.Xrm.Tooling.Connector.dll
-Import-Module .\tools\Microsoft.Xrm.Data.PowerShell\Microsoft.Xrm.Data.PowerShell.psm1
+Write-Host "Importing PowerShell Module..."
+Add-Type -Path $PSScriptRoot\tools\Microsoft.Xrm.Data.PowerShell\Microsoft.Xrm.Tooling.Connector.dll
+Import-Module $PSScriptRoot\tools\Microsoft.Xrm.Data.PowerShell\Microsoft.Xrm.Data.PowerShell.psm1
 $connection = Connect-CrmOnline -ServerUrl $url -Credential $credential
-Write-Host "Connected Org Version is $($connection.ConnectedOrgVersion)"
+
+Write-Host "Exporting Solution..."
+Export-CrmSolution `
+    -conn $connection `
+    -SolutionName $solutionName `
+    -SolutionZipFileName $zipFile `
+    -ExportAutoNumberSettings:$exportAutoNumberingSettings `
+    -ExportCalendarSettings:$exportCalendarSettings `
+    -ExportCustomizationSettings:$exportCustomizationSettings `
+    -ExportEmailTrackingSettings:$exportEmailTrackingSettings `
+    -ExportGeneralSettings:$exportGeneralSettings `
+    -ExportMarketingSettings:$exportMarketingSettings `
+    -ExportOutlookSynchronizationSettings:$exportOutlookSynchronizationSettings `
+    -ExportRelationshipRolesSettings:$exportRelationshipRolesSettings `
+    -ExportIsvConfigSettings:$exportIsvConfigSettings `
+    -ExportSalesSettings:$exportSalesSettings
