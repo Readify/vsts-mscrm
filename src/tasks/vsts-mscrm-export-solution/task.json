@@ -51,14 +51,6 @@
             "helpMarkDown": "TODO: Help."
         },
         {
-            "name": "zipFile",
-            "type": "string",
-            "label": "Zip File",
-            "defaultValue": "",
-            "required": true,
-            "helpMarkDown": "TODO: Help."
-        },
-        {
             "name": "exportAutoNumberingSettings",
             "type": "boolean",
             "label": "Export Auto Numbering Settings",

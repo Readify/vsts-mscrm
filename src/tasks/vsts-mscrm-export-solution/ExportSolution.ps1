@@ -11,9 +11,6 @@ param
     $exportAsManaged,
     
     [String] [Parameter(Mandatory = $true)]
-    $zipFile,
-    
-    [String] [Parameter(Mandatory = $true)]
     $exportAutoNumberingSettings,
     
     [String] [Parameter(Mandatory = $true)]
@@ -63,7 +60,6 @@ Import-Module "Microsoft.TeamFoundation.DistributedTask.Task.Common"
 Write-Host "connectedServiceName=$connectedServiceName"
 Write-Host "solutionName=$solutionName"
 Write-Host "exportAsManaged=$exportAsManaged"
-Write-Host "zipFile=$zipFile"
 Write-Host "exportAutoNumberingSettings=$exportAutoNumberingSettings"
 Write-Host "exportCalendarSettings=$exportCalendarSettings"
 Write-Host "exportCustomizationSettings=$exportCustomizationSettings"
@@ -94,7 +90,6 @@ Write-Host "Exporting Solution..."
 Export-CrmSolution `
     -conn $connection `
     -SolutionName $solutionName `
-    -SolutionZipFileName $zipFile `
     -ExportAutoNumberingSettings:$exportAutoNumberingSettings `
     -ExportCalendarSettings:$exportCalendarSettings `
     -ExportCustomizationSettings:$exportCustomizationSettings `
