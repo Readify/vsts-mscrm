@@ -36,6 +36,5 @@ $credential = New-Object System.Management.Automation.PSCredential -ArgumentList
 Write-Output "Importing PowerShell Module..."
 Add-Type -Path .\tools\Microsoft.Xrm.Data.PowerShell\Microsoft.Xrm.Tooling.Connector.dll
 Import-Module .\tools\Microsoft.Xrm.Data.PowerShell\Microsoft.Xrm.Data.PowerShell.psm1
-$connection = Connect-CrmOnline -ServerUrl $url -Credential $credential
-$accountDisplayName = Get-CrmEntityDisplayName -EntityLogicalName accountDisplayName
-Write-Host $accountDisplayName
+Connect-CrmOnline -ServerUrl $url -Credential $credential
+Get-CrmEntityDisplayName -EntityLogicalName accountDisplayName
