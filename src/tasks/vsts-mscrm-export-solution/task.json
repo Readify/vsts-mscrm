@@ -32,7 +32,7 @@
             "type": "connectedService:Generic",
             "label": "Dynamics CRM Online Endpoint",
             "required": true,
-            "helpMarkDown": "TODO: Help."
+            "helpMarkDown": "A generic service configured with CRM details."
         },
         {
             "name": "solutionName",
@@ -40,15 +40,37 @@
             "label": "Solution Name",
             "defaultValue": "",
             "required": true,
-            "helpMarkDown": "TODO: Help."
+            "helpMarkDown": "The name of the CRM solution to export."
         },
         {
-            "name": "exportAsManaged",
-            "type": "boolean",
-            "label": "Export as Managed",
-            "defaultValue": "False",
+            "name": "solutionType",
+            "type": "radio",
+            "label": "Solution Type",
+            "defaultValue": "unmanaged",
+            "options": {
+                "unmanaged": "Unmanaged",
+                "managed": "Managed"
+            },
             "required": true,
-            "helpMarkDown": "TODO: Help."
+            "helpMarkDown": "The type of package to produce.",
+            "groupName": "advanced"
+        },
+        {
+            "name": "solutionFilePath",
+            "type": "filePath",
+            "label": "Solution File Path",
+            "defaultValue": "$(System.DefaultWorkingDirectory)",
+            "required": true,
+            "helpMarkDown": "The directory in which to deposit the solution zip file."
+        },
+        {
+            "name": "solutionZipFileName",
+            "type": "string",
+            "label": "Solution Zip File Name",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "Override for the zip file name.",
+            "groupName": "advanced"
         },
         {
             "name": "exportAutoNumberingSettings",

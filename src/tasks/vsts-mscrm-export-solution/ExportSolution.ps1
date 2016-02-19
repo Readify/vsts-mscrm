@@ -6,10 +6,16 @@ param
     
     [String] [Parameter(Mandatory = $true)]
     $solutionName,
-
-    [String] [Parameter(Mandatory = $true)]
-    $exportAsManaged,
     
+    [String] [Parameter(Mandatory = $true)]
+    $solutionType,
+    
+    [String] [Parameter(Mandatory = $false)]
+    $solutionFilePath,
+    
+    [String] [Parameter(Mandatory = $false)]
+    $solutionZipFileName,
+
     [String] [Parameter(Mandatory = $true)]
     $exportAutoNumberingSettings,
     
@@ -45,7 +51,6 @@ param
 Import-Module "Microsoft.TeamFoundation.DistributedTask.Task.Internal"
 Import-Module "Microsoft.TeamFoundation.DistributedTask.Task.Common"
 
-[Boolean]$exportAsManaged = Convert-String $exportAsManaged Boolean
 [Boolean]$exportAutoNumberingSettings = Convert-String $exportAutoNumberingSettings Boolean
 [Boolean]$exportCalendarSettings = Convert-String $exportCalendarSettings Boolean
 [Boolean]$exportCustomizationSettings = Convert-String $exportCustomizationSettings Boolean
@@ -57,19 +62,22 @@ Import-Module "Microsoft.TeamFoundation.DistributedTask.Task.Common"
 [Boolean]$exportIsvConfig = Convert-String $exportIsvConfig Boolean
 [Boolean]$exportSales = Convert-String $exportSales Boolean
 
-Write-Host "connectedServiceName=$connectedServiceName"
-Write-Host "solutionName=$solutionName"
-Write-Host "exportAsManaged=$exportAsManaged"
-Write-Host "exportAutoNumberingSettings=$exportAutoNumberingSettings"
-Write-Host "exportCalendarSettings=$exportCalendarSettings"
-Write-Host "exportCustomizationSettings=$exportCustomizationSettings"
-Write-Host "exportEmailTrackingSettings=$exportEmailTrackingSettings"
-Write-Host "exportGeneralSettings=$exportGeneralSettings"
-Write-Host "exportMarketingSettings=$exportMarketingSettings"
-Write-Host "exportOutlookSynchronizationSettings=$exportOutlookSynchronizationSettings"
-Write-Host "exportRelationshipRoles=$exportRelationshipRoles"
-Write-Host "exportIsvConfig=$exportIsvConfig"
-Write-Host "exportSales=$exportSales"
+Write-Host "connectedServiceName = $connectedServiceName"
+Write-Host "solutionName = $solutionName"
+Write-Host "solutionType = $solutionType"
+Write-Host "solutionFilePath = $solutionFilePath"
+Write-Host "solutionZipFileName = $solutionZipFileName"
+Write-Host "exportAsManaged = $exportAsManaged"
+Write-Host "exportAutoNumberingSettings = $exportAutoNumberingSettings"
+Write-Host "exportCalendarSettings = $exportCalendarSettings"
+Write-Host "exportCustomizationSettings = $exportCustomizationSettings"
+Write-Host "exportEmailTrackingSettings = $exportEmailTrackingSettings"
+Write-Host "exportGeneralSettings = $exportGeneralSettings"
+Write-Host "exportMarketingSettings = $exportMarketingSettings"
+Write-Host "exportOutlookSynchronizationSettings = $exportOutlookSynchronizationSettings"
+Write-Host "exportRelationshipRoles = $exportRelationshipRoles"
+Write-Host "exportIsvConfig = $exportIsvConfig"
+Write-Host "exportSales = $exportSales"
     
 Write-Host "Getting service endpoint..."
 $serviceEndpoint = Get-ServiceEndpoint -Context $distributedTaskContext -Name $connectedServiceName
@@ -87,9 +95,11 @@ Import-Module $PSScriptRoot\tools\Microsoft.Xrm.Data.PowerShell\Microsoft.Xrm.Da
 $connection = Connect-CrmOnline -ServerUrl $url -Credential $credential
 
 Write-Host "Exporting Solution..."
-Export-CrmSolution `
+$response = Export-CrmSolution `
     -conn $connection `
     -SolutionName $solutionName `
+    -SolutionFilePath $solutionFilePath `
+    -SolutionZipFileName $solutionZipFileName `
     -ExportAutoNumberingSettings:$exportAutoNumberingSettings `
     -ExportCalendarSettings:$exportCalendarSettings `
     -ExportCustomizationSettings:$exportCustomizationSettings `
