@@ -130,9 +130,9 @@
             "groupName": "advanced"
         },
         {
-            "name": "exportRelationshipRolesSettings",
+            "name": "exportRelationshipRoles",
             "type": "boolean",
-            "label": "Export Relationship Roles Settings",
+            "label": "Export Relationship Roless",
             "defaultValue": "False",
             "required": true,
             "helpMarkDown": "TODO: Help.",

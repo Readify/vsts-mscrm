@@ -38,7 +38,7 @@ param
     $exportOutlookSynchronizationSettings,
     
     [String] [Parameter(Mandatory = $true)]
-    $exportRelationshipRolesSettings,
+    $exportRelationshipRoles,
     
     [String] [Parameter(Mandatory = $true)]
     $exportIsvConfigSettings,
@@ -59,7 +59,7 @@ Import-Module "Microsoft.TeamFoundation.DistributedTask.Task.Common"
 [Boolean]$exportGeneralSettings = Convert-String $exportGeneralSettings Boolean
 [Boolean]$exportMarketingSettings = Convert-String $exportMarketingSettings Boolean
 [Boolean]$exportOutlookSynchronizationSettings = Convert-String $exportOutlookSynchronizationSettings Boolean
-[Boolean]$exportRelationshipRolesSettings = Convert-String $exportRelationshipRolesSettings Boolean
+[Boolean]$exportRelationshipRoles = Convert-String $exportRelationshipRoles Boolean
 [Boolean]$exportIsvConfigSettings = Convert-String $exportIsvConfigSettings Boolean
 [Boolean]$exportSalesSettings = Convert-String $exportSalesSettings Boolean
 
@@ -75,7 +75,7 @@ Write-Host "exportEmailTrackingSettings=$exportEmailTrackingSettings"
 Write-Host "exportGeneralSettings=$exportGeneralSettings"
 Write-Host "exportMarketingSettings=$exportMarketingSettings"
 Write-Host "exportOutlookSynchronizationSettings=$exportOutlookSynchronizationSettings"
-Write-Host "exportRelationshipRolesSettings=$exportRelationshipRolesSettings"
+Write-Host "exportRelationshipRoles=$exportRelationshipRoles"
 Write-Host "exportIsvConfigSettings=$exportIsvConfigSettings"
 Write-Host "exportSalesSettings=$exportSalesSettings"
     
@@ -106,6 +106,6 @@ Export-CrmSolution `
     -ExportGeneralSettings:$exportGeneralSettings `
     -ExportMarketingSettings:$exportMarketingSettings `
     -ExportOutlookSynchronizationSettings:$exportOutlookSynchronizationSettings `
-    -ExportRelationshipRolesSettings:$exportRelationshipRolesSettings `
+    -ExportRelationshipRoles:$exportRelationshipRoles `
     -ExportIsvConfigSettings:$exportIsvConfigSettings `
     -ExportSalesSettings:$exportSalesSettings
