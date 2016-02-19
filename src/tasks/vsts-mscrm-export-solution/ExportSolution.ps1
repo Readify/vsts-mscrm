@@ -62,28 +62,32 @@ Import-Module "Microsoft.TeamFoundation.DistributedTask.Task.Common"
 [Boolean]$exportIsvConfig = Convert-String $exportIsvConfig Boolean
 [Boolean]$exportSales = Convert-String $exportSales Boolean
 
-Write-Host "connectedServiceName = $connectedServiceName"
-Write-Host "solutionName = $solutionName"
-Write-Host "solutionType = $solutionType"
-Write-Host "solutionFilePath = $solutionFilePath"
-Write-Host "solutionZipFileName = $solutionZipFileName"
-Write-Host "exportAsManaged = $exportAsManaged"
-Write-Host "exportAutoNumberingSettings = $exportAutoNumberingSettings"
-Write-Host "exportCalendarSettings = $exportCalendarSettings"
-Write-Host "exportCustomizationSettings = $exportCustomizationSettings"
-Write-Host "exportEmailTrackingSettings = $exportEmailTrackingSettings"
-Write-Host "exportGeneralSettings = $exportGeneralSettings"
-Write-Host "exportMarketingSettings = $exportMarketingSettings"
-Write-Host "exportOutlookSynchronizationSettings = $exportOutlookSynchronizationSettings"
-Write-Host "exportRelationshipRoles = $exportRelationshipRoles"
-Write-Host "exportIsvConfig = $exportIsvConfig"
-Write-Host "exportSales = $exportSales"
+Write-Verbose "connectedServiceName = $connectedServiceName"
+Write-Verbose "solutionName = $solutionName"
+Write-Verbose "solutionType = $solutionType"
+Write-Verbose "solutionFilePath = $solutionFilePath"
+Write-Verbose "solutionZipFileName = $solutionZipFileName"
+Write-Verbose "exportAsManaged = $exportAsManaged"
+Write-Verbose "exportAutoNumberingSettings = $exportAutoNumberingSettings"
+Write-Verbose "exportCalendarSettings = $exportCalendarSettings"
+Write-Verbose "exportCustomizationSettings = $exportCustomizationSettings"
+Write-Verbose "exportEmailTrackingSettings = $exportEmailTrackingSettings"
+Write-Verbose "exportGeneralSettings = $exportGeneralSettings"
+Write-Verbose "exportMarketingSettings = $exportMarketingSettings"
+Write-Verbose "exportOutlookSynchronizationSettings = $exportOutlookSynchronizationSettings"
+Write-Verbose "exportRelationshipRoles = $exportRelationshipRoles"
+Write-Verbose "exportIsvConfig = $exportIsvConfig"
+Write-Verbose "exportSales = $exportSales"
     
 Write-Host "Getting service endpoint..."
 $serviceEndpoint = Get-ServiceEndpoint -Context $distributedTaskContext -Name $connectedServiceName
 
 $url = $serviceEndpoint.Url
+Write-Verbose "url = $url"
+
 $username = $serviceEndpoint.Authorization.Parameters.UserName
+Write-Verbose "username = $username"
+
 $password = $serviceEndpoint.Authorization.Parameters.Password
 
 $securePassword = ConvertTo-SecureString $password -AsPlainText -Force
@@ -91,15 +95,27 @@ $credential = New-Object System.Management.Automation.PSCredential -ArgumentList
 
 Write-Host "Importing PowerShell Module..."
 Add-Type -Path $PSScriptRoot\tools\Microsoft.Xrm.Data.PowerShell\Microsoft.Xrm.Tooling.Connector.dll
-Import-Module $PSScriptRoot\tools\Microsoft.Xrm.Data.PowerShell\Microsoft.Xrm.Data.PowerShell.psm1
-$connection = Connect-CrmOnline -ServerUrl $url -Credential $credential
+$module = Import-Module $PSScriptRoot\tools\Microsoft.Xrm.Data.PowerShell\Microsoft.Xrm.Data.PowerShell.psm1
+
+Write-Host "Connecting to CRM..."
+$connection = Connect-CrmOnline -ServerUrl $url -Credential $
+Write-Host "ConnectedOrgFriendlyName is: $($connection.ConnectedOrgFriendlyName)"
+Write-Host "ConnectedOrgVersion is: $($connection.ConnectedOrgVersion)"
 
 Write-Host "Exporting Solution..."
+
+if ($solutionType -eq "unmanaged") {
+    $managed = $false
+} else {
+    $managed = $true
+}
+
 $response = Export-CrmSolution `
     -conn $connection `
     -SolutionName $solutionName `
     -SolutionFilePath $solutionFilePath `
     -SolutionZipFileName $solutionZipFileName `
+    -Managed:$managed `
     -ExportAutoNumberingSettings:$exportAutoNumberingSettings `
     -ExportCalendarSettings:$exportCalendarSettings `
     -ExportCustomizationSettings:$exportCustomizationSettings `
@@ -110,3 +126,4 @@ $response = Export-CrmSolution `
     -ExportRelationshipRoles:$exportRelationshipRoles `
     -ExportIsvConfig:$exportIsvConfig `
     -ExportSales:$exportSales
+Write-Host "Solution Path is: $($response.SolutionPath)"
