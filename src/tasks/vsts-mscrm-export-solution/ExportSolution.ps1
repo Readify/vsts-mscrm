@@ -41,7 +41,7 @@ param
     $exportIsvConfig,
     
     [String] [Parameter(Mandatory = $true)]
-    $exportSalesSettings            
+    $exportSales           
 )
 
 # Import the Task.Common and Task.Internal dll that has all the cmdlets we need for Build
@@ -58,7 +58,7 @@ Import-Module "Microsoft.TeamFoundation.DistributedTask.Task.Common"
 [Boolean]$exportOutlookSynchronizationSettings = Convert-String $exportOutlookSynchronizationSettings Boolean
 [Boolean]$exportRelationshipRoles = Convert-String $exportRelationshipRoles Boolean
 [Boolean]$exportIsvConfig = Convert-String $exportIsvConfig Boolean
-[Boolean]$exportSalesSettings = Convert-String $exportSalesSettings Boolean
+[Boolean]$exportSales = Convert-String $exportSales Boolean
 
 Write-Host "connectedServiceName=$connectedServiceName"
 Write-Host "solutionName=$solutionName"
@@ -73,7 +73,7 @@ Write-Host "exportMarketingSettings=$exportMarketingSettings"
 Write-Host "exportOutlookSynchronizationSettings=$exportOutlookSynchronizationSettings"
 Write-Host "exportRelationshipRoles=$exportRelationshipRoles"
 Write-Host "exportIsvConfig=$exportIsvConfig"
-Write-Host "exportSalesSettings=$exportSalesSettings"
+Write-Host "exportSales=$exportSales"
     
 Write-Host "Getting service endpoint..."
 $serviceEndpoint = Get-ServiceEndpoint -Context $distributedTaskContext -Name $connectedServiceName
@@ -104,4 +104,4 @@ Export-CrmSolution `
     -ExportOutlookSynchronizationSettings:$exportOutlookSynchronizationSettings `
     -ExportRelationshipRoles:$exportRelationshipRoles `
     -ExportIsvConfig:$exportIsvConfig `
-    -ExportSalesSettings:$exportSalesSettings
+    -ExportSales:$exportSales

@@ -140,9 +140,9 @@
             "groupName": "advanced"
         },
         {
-            "name": "exportSalesSettings",
+            "name": "exportSales",
             "type": "boolean",
-            "label": "Export Sales Settings",
+            "label": "Export Sales",
             "defaultValue": "False",
             "required": true,
             "helpMarkDown": "TODO: Help.",
