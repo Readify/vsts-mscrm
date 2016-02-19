@@ -98,7 +98,7 @@ Add-Type -Path $PSScriptRoot\tools\Microsoft.Xrm.Data.PowerShell\Microsoft.Xrm.T
 $module = Import-Module $PSScriptRoot\tools\Microsoft.Xrm.Data.PowerShell\Microsoft.Xrm.Data.PowerShell.psm1
 
 Write-Host "Connecting to CRM..."
-$connection = Connect-CrmOnline -ServerUrl $url -Credential $
+$connection = Connect-CrmOnline -ServerUrl $url -Credential $credential
 Write-Host "ConnectedOrgFriendlyName is: $($connection.ConnectedOrgFriendlyName)"
 Write-Host "ConnectedOrgVersion is: $($connection.ConnectedOrgVersion)"
 
