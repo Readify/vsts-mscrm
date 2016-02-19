@@ -1,62 +1,78 @@
 {
-	"id": "e6a6f2b1-1256-4819-8f1a-5c2b7b4fdd36",
-	"name": "vsts-mscrm-export-solution",
-	"friendlyName": "Export Dynamics CRM Solution",
-	"description": "Exports a solution from a Dynamics CRM instance",
-	"helpMarkDown": "",
-	"category": "Package",
-	"visibility": [
-		"Package"
-	],
-	"author": "Mitch Denny",
-	"version": {
-		"Major": 0,
-		"Minor": 0,
-		"Patch": 1
-	},
-	"demands": [
-		"DotNetFramework"
-	],
-	"minimumAgentVersion": "1.91.0",
-	"instanceNameFormat": "Export Solution from $(message)",
-	"inputs": [
-		{
-			"name": "connectedServiceName",
-			"type": "connectedService:Generic",
-			"label": "Dynamics CRM Online Endpoint",
-			"required": true,
-			"helpMarkDown": "TODO: Help."
-		},
+    "id": "e6a6f2b1-1256-4819-8f1a-5c2b7b4fdd36",
+    "name": "vsts-mscrm-export-solution",
+    "friendlyName": "Export Dynamics CRM Solution",
+    "description": "Exports a solution from a Dynamics CRM instance",
+    "helpMarkDown": "",
+    "category": "Package",
+    "visibility": [
+        "Package"
+    ],
+    "author": "Mitch Denny",
+    "version": {
+        "Major": 0,
+        "Minor": 0,
+        "Patch": 1
+    },
+    "demands": [
+        "DotNetFramework"
+    ],
+    "minimumAgentVersion": "1.91.0",
+    "instanceNameFormat": "Export Solution from $(message)",
+    "groups": [
         {
-			"name": "solutionName",
-			"type": "string",
-			"label": "Solution Name",
-			"defaultValue": "",
-			"required": true,
-			"helpMarkDown": "TODO: Help."
-		},
+            "name": "advanced",
+            "displayName": "Advanced",
+            "isExpanded": false
+        }
+    ],
+    "inputs": [
         {
-			"name": "publisherName",
-			"type": "string",
-			"label": "Publisher Name",
-			"defaultValue": "",
-			"required": true,
-			"helpMarkDown": "TODO: Help."
-		},
+            "name": "connectedServiceName",
+            "type": "connectedService:Generic",
+            "label": "Dynamics CRM Online Endpoint",
+            "required": true,
+            "helpMarkDown": "TODO: Help."
+        },
         {
-			"name": "zipFile",
-			"type": "string",
-			"label": "Zip File",
-			"defaultValue": "",
-			"required": true,
-			"helpMarkDown": "TODO: Help."
-		}
-	],
-	"execution": {
-		"PowerShell": {
-			"target": "$(CurrentDirectory)\\ExportSolution.ps1",
-			"argumentFormat": "",
-			"workingDirectory": "$(CurrentDirectory)"
-		}
-	}
+            "name": "solutionName",
+            "type": "string",
+            "label": "Solution Name",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "TODO: Help."
+        },
+        {
+            "name": "publisherName",
+            "type": "string",
+            "label": "Publisher Name",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "TODO: Help."
+        },
+        {
+            "name": "zipFile",
+            "type": "string",
+            "label": "Zip File",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "TODO: Help."
+        },
+        {
+            "name": "exportSalesSettings",
+            "type": "boolean",
+            "label": "Export Sales Settings",
+            "defaultValue": "False",
+            "required": true,
+            "helpMarkDown": "TODO: Help.",
+            "groupName": "advanced"
+        }
+    ],
+    "execution": {
+        "PowerShell": {
+            "target": "$(CurrentDirectory)\\ExportSolution.ps1",
+            "argumentFormat": "",
+            "workingDirectory": "$(CurrentDirectory)"
+        }
+    }
 }
