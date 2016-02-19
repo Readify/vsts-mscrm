@@ -138,7 +138,7 @@
         {
             "name": "exportRelationshipRoles",
             "type": "boolean",
-            "label": "Export Relationship Roless",
+            "label": "Export Relationship Roles",
             "defaultValue": "False",
             "required": true,
             "helpMarkDown": "TODO: Help.",
