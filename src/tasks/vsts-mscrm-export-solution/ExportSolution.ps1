@@ -8,9 +8,6 @@ param
     $solutionName,
 
     [String] [Parameter(Mandatory = $true)]
-    $publisherName,
-    
-    [String] [Parameter(Mandatory = $true)]
     $exportAsManaged,
     
     [String] [Parameter(Mandatory = $true)]
@@ -41,7 +38,7 @@ param
     $exportRelationshipRoles,
     
     [String] [Parameter(Mandatory = $true)]
-    $exportIsvConfigSettings,
+    $exportIsvConfig,
     
     [String] [Parameter(Mandatory = $true)]
     $exportSalesSettings            
@@ -60,12 +57,11 @@ Import-Module "Microsoft.TeamFoundation.DistributedTask.Task.Common"
 [Boolean]$exportMarketingSettings = Convert-String $exportMarketingSettings Boolean
 [Boolean]$exportOutlookSynchronizationSettings = Convert-String $exportOutlookSynchronizationSettings Boolean
 [Boolean]$exportRelationshipRoles = Convert-String $exportRelationshipRoles Boolean
-[Boolean]$exportIsvConfigSettings = Convert-String $exportIsvConfigSettings Boolean
+[Boolean]$exportIsvConfig = Convert-String $exportIsvConfig Boolean
 [Boolean]$exportSalesSettings = Convert-String $exportSalesSettings Boolean
 
 Write-Host "connectedServiceName=$connectedServiceName"
 Write-Host "solutionName=$solutionName"
-Write-Host "publisherName=$publisherName"
 Write-Host "exportAsManaged=$exportAsManaged"
 Write-Host "zipFile=$zipFile"
 Write-Host "exportAutoNumberingSettings=$exportAutoNumberingSettings"
@@ -76,7 +72,7 @@ Write-Host "exportGeneralSettings=$exportGeneralSettings"
 Write-Host "exportMarketingSettings=$exportMarketingSettings"
 Write-Host "exportOutlookSynchronizationSettings=$exportOutlookSynchronizationSettings"
 Write-Host "exportRelationshipRoles=$exportRelationshipRoles"
-Write-Host "exportIsvConfigSettings=$exportIsvConfigSettings"
+Write-Host "exportIsvConfig=$exportIsvConfig"
 Write-Host "exportSalesSettings=$exportSalesSettings"
     
 Write-Host "Getting service endpoint..."
@@ -107,5 +103,5 @@ Export-CrmSolution `
     -ExportMarketingSettings:$exportMarketingSettings `
     -ExportOutlookSynchronizationSettings:$exportOutlookSynchronizationSettings `
     -ExportRelationshipRoles:$exportRelationshipRoles `
-    -ExportIsvConfigSettings:$exportIsvConfigSettings `
+    -ExportIsvConfig:$exportIsvConfig `
     -ExportSalesSettings:$exportSalesSettings

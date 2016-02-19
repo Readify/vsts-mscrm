@@ -18,7 +18,7 @@
         "DotNetFramework"
     ],
     "minimumAgentVersion": "1.91.0",
-    "instanceNameFormat": "Export Solution from $(message)",
+    "instanceNameFormat": "Export $(solutionName) CRM Solution to $(zipFile)",
     "groups": [
         {
             "name": "advanced",
@@ -38,14 +38,6 @@
             "name": "solutionName",
             "type": "string",
             "label": "Solution Name",
-            "defaultValue": "",
-            "required": true,
-            "helpMarkDown": "TODO: Help."
-        },
-        {
-            "name": "publisherName",
-            "type": "string",
-            "label": "Publisher Name",
             "defaultValue": "",
             "required": true,
             "helpMarkDown": "TODO: Help."
@@ -139,9 +131,9 @@
             "groupName": "advanced"
         },
         {
-            "name": "exportIsvConfigSettings",
+            "name": "exportIsvConfig",
             "type": "boolean",
-            "label": "Export ISV Config Settings",
+            "label": "Export ISV Config",
             "defaultValue": "False",
             "required": true,
             "helpMarkDown": "TODO: Help.",
