@@ -10,46 +10,58 @@ param
     [String] [Parameter(Mandatory = $true)]
     $publisherName,
     
-    [Boolean] [Parameter(Mandatory = $true)]
+    [String] [Parameter(Mandatory = $true)]
     $exportAsManaged,
     
     [String] [Parameter(Mandatory = $true)]
     $zipFile,
     
-    [Boolean] [Parameter(Mandatory = $true)]
+    [String] [Parameter(Mandatory = $true)]
     $exportAutoNumberingSettings,
     
-    [Boolean] [Parameter(Mandatory = $true)]
+    [String] [Parameter(Mandatory = $true)]
     $exportCalendarSettings,
     
-    [Boolean] [Parameter(Mandatory = $true)]
+    [String] [Parameter(Mandatory = $true)]
     $exportCustomizationSettings,
     
-    [Boolean] [Parameter(Mandatory = $true)]
+    [String] [Parameter(Mandatory = $true)]
     $exportEmailTrackingSettings,
     
-    [Boolean] [Parameter(Mandatory = $true)]
+    [String] [Parameter(Mandatory = $true)]
     $exportGeneralSettings,
     
-    [Boolean] [Parameter(Mandatory = $true)]
+    [String] [Parameter(Mandatory = $true)]
     $exportMarketingSettings,
     
-    [Boolean] [Parameter(Mandatory = $true)]
+    [String] [Parameter(Mandatory = $true)]
     $exportOutlookSynchronizationSettings,
     
-    [Boolean] [Parameter(Mandatory = $true)]
+    [String] [Parameter(Mandatory = $true)]
     $exportRelationshipRolesSettings,
     
-    [Boolean] [Parameter(Mandatory = $true)]
+    [String] [Parameter(Mandatory = $true)]
     $exportIsvConfigSettings,
     
-    [Boolean] [Parameter(Mandatory = $true)]
+    [String] [Parameter(Mandatory = $true)]
     $exportSalesSettings            
 )
 
 # Import the Task.Common and Task.Internal dll that has all the cmdlets we need for Build
 Import-Module "Microsoft.TeamFoundation.DistributedTask.Task.Internal"
 Import-Module "Microsoft.TeamFoundation.DistributedTask.Task.Common"
+
+[Boolean]$exportAsManaged = Convert-String $exportAsManaged Boolean
+[Boolean]$exportAutoNumberingSettings = Convert-String $exportAutoNumberingSettings Boolean
+[Boolean]$exportCalendarSettings = Convert-String $exportCalendarSettings Boolean
+[Boolean]$exportCustomizationSettings = Convert-String $exportCustomizationSettings Boolean
+[Boolean]$exportEmailTrackingSettings = Convert-String $exportEmailTrackingSettings Boolean
+[Boolean]$exportGeneralSettings = Convert-String $exportGeneralSettings Boolean
+[Boolean]$exportMarketingSettings = Convert-String $exportMarketingSettings Boolean
+[Boolean]$exportOutlookSynchronizationSettings = Convert-String $exportOutlookSynchronizationSettings Boolean
+[Boolean]$exportRelationshipRolesSettings = Convert-String $exportRelationshipRolesSettings Boolean
+[Boolean]$exportIsvConfigSettings = Convert-String $exportIsvConfigSettings Boolean
+[Boolean]$exportSalesSettings = Convert-String $exportSalesSettings Boolean
 
 Write-Host "connectedServiceName=$connectedServiceName"
 Write-Host "solutionName=$solutionName"
@@ -58,7 +70,7 @@ Write-Host "exportAsManaged=$exportAsManaged"
 Write-Host "zipFile=$zipFile"
 Write-Host "exportAutoNumberingSettings=$exportAutoNumberingSettings"
 Write-Host "exportCalendarSettings=$exportCalendarSettings"
-Write-Host "exportCustomizationSettingsx=$exportCustomizationSettings"
+Write-Host "exportCustomizationSettings=$exportCustomizationSettings"
 Write-Host "exportEmailTrackingSettings=$exportEmailTrackingSettings"
 Write-Host "exportGeneralSettings=$exportGeneralSettings"
 Write-Host "exportMarketingSettings=$exportMarketingSettings"
