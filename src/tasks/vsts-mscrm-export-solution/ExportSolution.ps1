@@ -47,6 +47,8 @@ param
     $exportSales           
 )
 
+$ErrorActionPreference = Stop
+
 # Import the Task.Common and Task.Internal dll that has all the cmdlets we need for Build
 Import-Module "Microsoft.TeamFoundation.DistributedTask.Task.Internal"
 Import-Module "Microsoft.TeamFoundation.DistributedTask.Task.Common"
