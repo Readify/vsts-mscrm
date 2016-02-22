@@ -19,16 +19,65 @@
 	],
 	"minimumAgentVersion": "1.91.0",
 	"instanceNameFormat": "Import Solution to $(message)",
-	"inputs": [
-		{
-			"name": "message",
-			"type": "string",
-			"label": "Message",
-			"defaultValue": "Hello World",
-			"required": true,
-			"helpMarkDown": "TODO: Help."
-		}
-	],
+	 "groups": [
+        {
+            "name": "advanced",
+            "displayName": "Advanced",
+            "isExpanded": false
+        }
+    ],
+    "inputs": [
+        {
+            "name": "connectedServiceName",
+            "type": "connectedService:Generic",
+            "label": "Dynamics CRM Online Endpoint",
+            "required": true,
+            "helpMarkDown": "A generic service configured with CRM details."
+        },
+        {
+            "name": "solutionFilePath",
+            "type": "filePath",
+            "label": "Solution File Path",
+            "defaultValue": "$(System.DefaultWorkingDirectory)",
+            "required": true,
+            "helpMarkDown": "The directory in which to deposit the solution zip file."
+        },
+        {
+            "name": "activatePlugIns",
+            "type": "boolean",
+            "label": "Activate Plug-Ins",
+            "defaultValue": "False",
+            "required": true,
+            "helpMarkDown": "TODO: Help.",
+            "groupName": "advanced"
+        },
+        {
+            "name": "overwriteUnManagedCustomizations",
+            "type": "boolean",
+            "label": "Overridte Unmanaged Customizations",
+            "defaultValue": "False",
+            "required": true,
+            "helpMarkDown": "TODO: Help.",
+            "groupName": "advanced"
+        },
+        {
+            "name": "skipDependancyOnProductUpdateCheckOnInstall",
+            "type": "boolean",
+            "label": "Skip Dependency on Product Update Check on Install",
+            "defaultValue": "False",
+            "required": true,
+            "helpMarkDown": "TODO: Help.",
+            "groupName": "advanced"
+        },
+        {
+            "name": "publishChanges",
+            "type": "boolean",
+            "label": "Publish Changes",
+            "defaultValue": "False",
+            "required": true,
+            "helpMarkDown": "TODO: Help."
+        }
+    ],
 	"execution": {
 		"PowerShell": {
 			"target": "$(CurrentDirectory)\\ImportSolution.ps1",
