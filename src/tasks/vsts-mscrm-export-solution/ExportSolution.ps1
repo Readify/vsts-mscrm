@@ -67,7 +67,6 @@ Import-Module "Microsoft.TeamFoundation.DistributedTask.Task.Common"
 [Boolean]$exportIsvConfig = Convert-String $exportIsvConfig Boolean
 [Boolean]$exportSales = Convert-String $exportSales Boolean
 
-Write-Host 
 Write-Host "connectedServiceName is: $connectedServiceName"
 Write-Host "solutionName is: $solutionName"
 Write-Host "solutionType is: $solutionType"
