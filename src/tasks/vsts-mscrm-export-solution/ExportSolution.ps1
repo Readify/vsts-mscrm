@@ -49,6 +49,9 @@ param
 
 $ErrorActionPreference = "Stop"
 
+$taskMetadata = ConvertFrom-Json -InputObject $(Get-Content $PSScriptRoot\task.json -raw)
+Write-Host "Task version is: $($taskMetadata.version)"
+
 # Import the Task.Common and Task.Internal dll that has all the cmdlets we need for Build
 Import-Module "Microsoft.TeamFoundation.DistributedTask.Task.Internal"
 Import-Module "Microsoft.TeamFoundation.DistributedTask.Task.Common"
@@ -64,30 +67,31 @@ Import-Module "Microsoft.TeamFoundation.DistributedTask.Task.Common"
 [Boolean]$exportIsvConfig = Convert-String $exportIsvConfig Boolean
 [Boolean]$exportSales = Convert-String $exportSales Boolean
 
-Write-Host "connectedServiceName = $connectedServiceName"
-Write-Host "solutionName = $solutionName"
-Write-Host "solutionType = $solutionType"
-Write-Host "solutionFilePath = $solutionFilePath"
-Write-Host "solutionZipFileName = $solutionZipFileName"
-Write-Host "exportAutoNumberingSettings = $exportAutoNumberingSettings"
-Write-Host "exportCalendarSettings = $exportCalendarSettings"
-Write-Host "exportCustomizationSettings = $exportCustomizationSettings"
-Write-Host "exportEmailTrackingSettings = $exportEmailTrackingSettings"
-Write-Host "exportGeneralSettings = $exportGeneralSettings"
-Write-Host "exportMarketingSettings = $exportMarketingSettings"
-Write-Host "exportOutlookSynchronizationSettings = $exportOutlookSynchronizationSettings"
-Write-Host "exportRelationshipRoles = $exportRelationshipRoles"
-Write-Host "exportIsvConfig = $exportIsvConfig"
-Write-Host "exportSales = $exportSales"
+Write-Host 
+Write-Host "connectedServiceName is: $connectedServiceName"
+Write-Host "solutionName is: $solutionName"
+Write-Host "solutionType is: $solutionType"
+Write-Host "solutionFilePath is: $solutionFilePath"
+Write-Host "solutionZipFileName is: $solutionZipFileName"
+Write-Host "exportAutoNumberingSettings is: $exportAutoNumberingSettings"
+Write-Host "exportCalendarSettings is: $exportCalendarSettings"
+Write-Host "exportCustomizationSettings is: $exportCustomizationSettings"
+Write-Host "exportEmailTrackingSettings is: $exportEmailTrackingSettings"
+Write-Host "exportGeneralSettings is: $exportGeneralSettings"
+Write-Host "exportMarketingSettings is: $exportMarketingSettings"
+Write-Host "exportOutlookSynchronizationSettings is: $exportOutlookSynchronizationSettings"
+Write-Host "exportRelationshipRoles is: $exportRelationshipRoles"
+Write-Host "exportIsvConfig is: $exportIsvConfig"
+Write-Host "exportSales is: $exportSales"
     
 Write-Host "Getting service endpoint..."
 $serviceEndpoint = Get-ServiceEndpoint -Context $distributedTaskContext -Name $connectedServiceName
 
 $url = $serviceEndpoint.Url
-Write-Host "url = $url"
+Write-Host "url is: $url"
 
 $username = $serviceEndpoint.Authorization.Parameters.UserName
-Write-Host "username = $username"
+Write-Host "username is: $username"
 
 $password = $serviceEndpoint.Authorization.Parameters.Password
 
