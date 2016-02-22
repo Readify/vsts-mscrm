@@ -18,7 +18,7 @@
 		"DotNetFramework"
 	],
 	"minimumAgentVersion": "1.91.0",
-	"instanceNameFormat": "Import Solution to $(message)",
+	"instanceNameFormat": "Import CRM Solution from $(zipFile)",
 	 "groups": [
         {
             "name": "advanced",
@@ -40,7 +40,7 @@
             "label": "Solution File Path",
             "defaultValue": "$(System.DefaultWorkingDirectory)",
             "required": true,
-            "helpMarkDown": "The directory in which to deposit the solution zip file."
+            "helpMarkDown": "The path of zip file to upload."
         },
         {
             "name": "activatePlugIns",
@@ -54,7 +54,7 @@
         {
             "name": "overwriteUnManagedCustomizations",
             "type": "boolean",
-            "label": "Overridte Unmanaged Customizations",
+            "label": "Overwrite Unmanaged Customizations",
             "defaultValue": "False",
             "required": true,
             "helpMarkDown": "TODO: Help.",

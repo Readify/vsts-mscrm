@@ -63,3 +63,13 @@ Write-Host "Connecting to CRM..."
 $connection = Connect-CrmOnline -ServerUrl $url -Credential $credential
 Write-Host "ConnectedOrgFriendlyName is: $($connection.ConnectedOrgFriendlyName)"
 Write-Host "ConnectedOrgVersion is: $($connection.ConnectedOrgVersion)"
+
+Write-Host "Importing Solution..."
+
+$response = Import-CrmSolution `
+    -conn $connection `
+    -SolutionFilePath $solutionFilePath `
+    -ActivatePlugIns:$activatePlugIns `
+    -OverwriteUnManagedCustomizations:$overwriteUnManagedCustomizations `
+    -SkipDependancyOnProductUpdateCheckOnInstall:$skipDependancyOnProductUpdateCheckOnInstall `
+    -PublishChanges:$publishChanges
