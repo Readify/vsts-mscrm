@@ -62,31 +62,30 @@ Import-Module "Microsoft.TeamFoundation.DistributedTask.Task.Common"
 [Boolean]$exportIsvConfig = Convert-String $exportIsvConfig Boolean
 [Boolean]$exportSales = Convert-String $exportSales Boolean
 
-Write-Verbose "connectedServiceName = $connectedServiceName"
-Write-Verbose "solutionName = $solutionName"
-Write-Verbose "solutionType = $solutionType"
-Write-Verbose "solutionFilePath = $solutionFilePath"
-Write-Verbose "solutionZipFileName = $solutionZipFileName"
-Write-Verbose "exportAsManaged = $exportAsManaged"
-Write-Verbose "exportAutoNumberingSettings = $exportAutoNumberingSettings"
-Write-Verbose "exportCalendarSettings = $exportCalendarSettings"
-Write-Verbose "exportCustomizationSettings = $exportCustomizationSettings"
-Write-Verbose "exportEmailTrackingSettings = $exportEmailTrackingSettings"
-Write-Verbose "exportGeneralSettings = $exportGeneralSettings"
-Write-Verbose "exportMarketingSettings = $exportMarketingSettings"
-Write-Verbose "exportOutlookSynchronizationSettings = $exportOutlookSynchronizationSettings"
-Write-Verbose "exportRelationshipRoles = $exportRelationshipRoles"
-Write-Verbose "exportIsvConfig = $exportIsvConfig"
-Write-Verbose "exportSales = $exportSales"
+Write-Host "connectedServiceName = $connectedServiceName"
+Write-Host "solutionName = $solutionName"
+Write-Host "solutionType = $solutionType"
+Write-Host "solutionFilePath = $solutionFilePath"
+Write-Host "solutionZipFileName = $solutionZipFileName"
+Write-Host "exportAutoNumberingSettings = $exportAutoNumberingSettings"
+Write-Host "exportCalendarSettings = $exportCalendarSettings"
+Write-Host "exportCustomizationSettings = $exportCustomizationSettings"
+Write-Host "exportEmailTrackingSettings = $exportEmailTrackingSettings"
+Write-Host "exportGeneralSettings = $exportGeneralSettings"
+Write-Host "exportMarketingSettings = $exportMarketingSettings"
+Write-Host "exportOutlookSynchronizationSettings = $exportOutlookSynchronizationSettings"
+Write-Host "exportRelationshipRoles = $exportRelationshipRoles"
+Write-Host "exportIsvConfig = $exportIsvConfig"
+Write-Host "exportSales = $exportSales"
     
 Write-Host "Getting service endpoint..."
 $serviceEndpoint = Get-ServiceEndpoint -Context $distributedTaskContext -Name $connectedServiceName
 
 $url = $serviceEndpoint.Url
-Write-Verbose "url = $url"
+Write-Host "url = $url"
 
 $username = $serviceEndpoint.Authorization.Parameters.UserName
-Write-Verbose "username = $username"
+Write-Host "username = $username"
 
 $password = $serviceEndpoint.Authorization.Parameters.Password
 
