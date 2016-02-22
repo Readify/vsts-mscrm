@@ -100,7 +100,7 @@ $credential = New-Object System.Management.Automation.PSCredential -ArgumentList
 Write-Host "Importing PowerShell Module..."
 #Add-Type -Path $PSScriptRoot\tools\Microsoft.Xrm.Data.PowerShell\Microsoft.Xrm.Tooling.Connector.dll
 #Import-Module $PSScriptRoot\tools\Microsoft.Xrm.Data.PowerShell\Microsoft.Xrm.Data.PowerShell.psm1
-Install-Module -Name Microsoft.Xrm.Data.PowerShell -Scope CurrentUser - Force
+Install-Module -Name Microsoft.Xrm.Data.PowerShell -Scope CurrentUser -Force
 
 Write-Host "Connecting to CRM..."
 $connection = Connect-CrmOnline -ServerUrl $url -Credential $credential
