@@ -24,4 +24,4 @@ Write-Host "folder is: $folder"
 Write-Host "packageType is: $packageType"
 Write-Host "zipFile is: $zipFile"
 
-$PSScriptRoot\tools\SolutionPackager.exe /action:Pack /zipfile:"$zipFile" /packagetype:$packageType /folder:"$folder"
+.\tools\SolutionPackager.exe /action:Pack /zipfile:"$zipFile" /packagetype:$packageType /folder:"$folder"

@@ -20,4 +20,4 @@ import-module "Microsoft.TeamFoundation.DistributedTask.Task.Common"
 Write-Host "folder is: $folder"
 Write-Host "zipFile is: $zipFile"
 
-$PSScriptRoot\tools\SolutionPackager.exe /action:Extract /zipfile:"$zipFile" /folder:"$folder"
+.\tools\SolutionPackager.exe /action:Extract /zipfile:"$zipFile" /folder:"$folder"
