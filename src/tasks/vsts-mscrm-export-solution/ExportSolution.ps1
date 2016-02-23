@@ -102,7 +102,7 @@ $securePassword = ConvertTo-SecureString $password -AsPlainText -Force
 $credential = New-Object System.Management.Automation.PSCredential -ArgumentList $username, $securePassword
 
 
-if ($(Get-Module -Name Microsoft.Xrm.Data.PowerShell) -eq $null) {
+if ($(Get-Module -Name Microsoft.Xrm.Data.PowerShell -ListAvailable) -eq $null) {
     Write-Host "Installing PowerShell Module..."
     Install-Module -Name Microsoft.Xrm.Data.PowerShell -Scope CurrentUser -Force -Version $xrmPowerShellModuleVersion
 }
