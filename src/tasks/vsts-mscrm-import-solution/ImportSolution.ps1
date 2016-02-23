@@ -59,8 +59,10 @@ $password = $serviceEndpoint.Authorization.Parameters.Password
 $securePassword = ConvertTo-SecureString $password -AsPlainText -Force
 $credential = New-Object System.Management.Automation.PSCredential -ArgumentList $username, $securePassword
 
-Write-Host "Importing PowerShell Module..."
-Install-Module -Name Microsoft.Xrm.Data.PowerShell -Scope CurrentUser -Force -Version $xrmPowerShellModuleVersion
+if ($(Get-Module -Name Microsoft.Xrm.Data.PowerShell) -eq $null) {
+    Write-Host "Installing PowerShell Module..."
+    Install-Module -Name Microsoft.Xrm.Data.PowerShell -Scope CurrentUser -Force -Version $xrmPowerShellModuleVersion
+}
 
 Write-Host "Connecting to CRM..."
 $connection = Connect-CrmOnline -ServerUrl $url -Credential $credential
