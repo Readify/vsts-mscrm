@@ -17,7 +17,10 @@ param
     $skipDependancyOnProductUpdateCheckOnInstall,
     
     [String] [Parameter(Mandatory = $true)]
-    $publishChanges
+    $publishChanges,
+    
+    [String] [Parameter(Mandatory = $true)]
+    $xrmPowerShellModuleVersion        
 )
 
 $ErrorActionPreference = "Stop"
@@ -40,6 +43,7 @@ Write-Host "activatePlugIns is: $activatePlugIns"
 Write-Host "overwriteUnManagedCustomizations is: $overwriteUnManagedCustomizations"
 Write-Host "skipDependancyOnProductUpdateCheckOnInstall is: $skipDependancyOnProductUpdateCheckOnInstall"
 Write-Host "publishChanges is: $publishChanges"
+Write-Host "xrmPowerShellModuleVersion is: $xrmPowerShellModuleVersion"
     
 Write-Host "Getting service endpoint..."
 $serviceEndpoint = Get-ServiceEndpoint -Context $distributedTaskContext -Name $connectedServiceName
@@ -56,9 +60,7 @@ $securePassword = ConvertTo-SecureString $password -AsPlainText -Force
 $credential = New-Object System.Management.Automation.PSCredential -ArgumentList $username, $securePassword
 
 Write-Host "Importing PowerShell Module..."
-#Add-Type -Path $PSScriptRoot\tools\Microsoft.Xrm.Data.PowerShell\Microsoft.Xrm.Tooling.Connector.dll
-#Import-Module $PSScriptRoot\tools\Microsoft.Xrm.Data.PowerShell\Microsoft.Xrm.Data.PowerShell.psm1
-Install-Module -Name Microsoft.Xrm.Data.PowerShell -Scope CurrentUser -Force
+Install-Module -Name Microsoft.Xrm.Data.PowerShell -Scope CurrentUser -Force -Version $xrmPowerShellModuleVersion
 
 Write-Host "Connecting to CRM..."
 $connection = Connect-CrmOnline -ServerUrl $url -Credential $credential

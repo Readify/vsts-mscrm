@@ -76,6 +76,15 @@
             "defaultValue": "False",
             "required": true,
             "helpMarkDown": "TODO: Help."
+        },
+        {
+            "name": "xrmPowerShellModuleVersion",
+            "type": "string",
+            "label": "XRM PowerShell Module Version",
+            "defaultValue": "2.1",
+            "required": true,
+            "helpMarkDown": "TODO: Help.",
+            "groupName": "advanced"
         }
     ],
 	"execution": {
