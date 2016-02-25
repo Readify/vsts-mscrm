@@ -14,6 +14,10 @@ var version = {
 };
 
 var args = minimist(process.argv);
+var channelsContent = fs.readFileSync('channels.json', 'utf8');
+var channels = JSON.parse(channelsContent);
+
+console.log(channels);
 
 gulp.task('get-version', function (callback) {
     if (args.overrideversion && semver.valid(args.overrideversion)) {
