@@ -49,16 +49,22 @@ gulp.task('get-version', function (callback) {
     }
 });
 
-function stampTaskJson(path) {
+function stampTaskJson(path, taskName) {
     var taskDefinitionContents = fs.readFileSync(path, 'utf8');
 	var taskDefinition = JSON.parse(taskDefinitionContents);
+
+    var channelTaskSetup = channel.tasks[taskName]
+
+    taskDefinition.id = channelTaskSetup.id;
+    taskDefinition.name = channelTaskSetup.name;
+    taskDefinition.friendlyName = channelTaskSetup.friendlyName;
 
 	taskDefinition.version = {
         "Major": version.Major,
         "Minor": version.Minor,
         "Patch": version.Patch
     };
-
+    
 	taskDefinitionContents = JSON.stringify(taskDefinition, null, '\t');
 	fs.writeFileSync(path, taskDefinitionContents);    
 }
@@ -67,6 +73,7 @@ gulp.task('stamp-manifest', ['get-version'], function (callback) {
     var manifestContents = fs.readFileSync('src\\vss-extension.json', 'utf8');
 	var manifest = JSON.parse(manifestContents);
 
+    manifest.id = channel.id;
 	manifest.version = version.MajorMinorPatch;
 
 	manifestContents = JSON.stringify(manifest, null, '\t');
@@ -76,22 +83,22 @@ gulp.task('stamp-manifest', ['get-version'], function (callback) {
 });
 
 gulp.task('stamp-export-solution-task', ['get-version'], function (callback) {
-    stampTaskJson('src\\tasks\\vsts-mscrm-export-solution\\task.json');
+    stampTaskJson('src\\tasks\\vsts-mscrm-export-solution\\task.json', 'vsts-mscrm-export-solution');
     callback(); 
 });
 
 gulp.task('stamp-import-solution-task', ['get-version'], function (callback) {
-    stampTaskJson('src\\tasks\\vsts-mscrm-import-solution\\task.json');
+    stampTaskJson('src\\tasks\\vsts-mscrm-import-solution\\task.json', 'vsts-mscrm-import-solution');
     callback(); 
 });
 
 gulp.task('stamp-pack-solution-task', ['get-version'], function (callback) {
-    stampTaskJson('src\\tasks\\vsts-mscrm-pack-solution\\task.json');
+    stampTaskJson('src\\tasks\\vsts-mscrm-pack-solution\\task.json', 'vsts-mscrm-pack-solution');
     callback(); 
 });
 
 gulp.task('stamp-extract-solution-task', ['get-version'], function (callback) {
-    stampTaskJson('src\\tasks\\vsts-mscrm-extract-solution\\task.json');
+    stampTaskJson('src\\tasks\\vsts-mscrm-extract-solution\\task.json', 'vsts-mscrm-extract-solution');
     callback(); 
 });
 
