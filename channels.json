@@ -1,0 +1,77 @@
+{
+    "default": {
+        "id": "vsts-mscrm",
+        "tasks": {
+            "vsts-mscrm-export-solution": {
+                "id": "e6a6f2b1-1256-4819-8f1a-5c2b7b4fdd36",
+                "name": "vsts-mscrm-export-solution",
+                "friendlyName": "Export Dynamics CRM Solution"  
+            },
+            "vsts-mscrm-import-solution": {
+                "id": "1846b2fc-e7d7-45f6-871d-26054adfb87b",
+                "name": "vsts-mscrm-import-solution",
+                "friendlyName": "Import Dynamics CRM Solution" 
+            },
+            "vsts-mscrm-extract-solution": {
+                "id": "66170471-6959-4949-81f7-e224246743bc",
+                "name": "vsts-mscrm-extract-solution",
+                "friendlyName": "Pack Dynamics CRM Solution" 
+            },
+            "vsts-mscrm-pack-solution": {
+                "id": "d8a13429-d0d4-4aea-837a-82bacbb74cfd",
+                "name": "vsts-mscrm-pack-solution",
+                "friendlyName": "Extract Dynamics CRM Solution" 
+            }
+        }
+    },
+    "alpha": {
+        "id": "vsts-mscrm-alpha",
+        "tasks": {
+            "vsts-mscrm-export-solution": {
+                "id": "0e2a4722-e43b-4732-95c6-b77fca00f284",
+                "name": "vsts-mscrm-export-solution-alpha",
+                "friendlyName": "Export Dynamics CRM Solution (Alpha)"  
+            },
+            "vsts-mscrm-import-solution": {
+                "id": "546f8c5b-f93d-4fd7-96e3-3aeaceb22432",
+                "name": "vsts-mscrm-import-solution-alpha",
+                "friendlyName": "Import Dynamics CRM Solution (Alpha)" 
+            },
+            "vsts-mscrm-extract-solution": {
+                "id": "98069dae-d47b-4904-a466-d06bca03eff5",
+                "name": "vsts-mscrm-extract-solution-alpha",
+                "friendlyName": "Pack Dynamics CRM Solution (Alpha)" 
+            },
+            "vsts-mscrm-pack-solution": {
+                "id": "a0a6bbb8-6511-45bb-a67e-83d56b533cff",
+                "name": "vsts-mscrm-pack-solution-alpha",
+                "friendlyName": "Extract Dynamics CRM Solution (Alpha)" 
+            }
+        }
+    },
+    "beta": {
+        "id": "vsts-mscrm-beta",
+        "tasks": {
+            "vsts-mscrm-export-solution": {
+                "id": "f04efe07-6f7d-4052-976b-984b272678ca",
+                "name": "vsts-mscrm-export-solution-beta",
+                "friendlyName": "Export Dynamics CRM Solution (Beta)"  
+            },
+            "vsts-mscrm-import-solution": {
+                "id": "e15aed0c-9045-43e6-bd4d-2e93a29156bc",
+                "name": "vsts-mscrm-import-solution-beta",
+                "friendlyName": "Import Dynamics CRM Solution (Beta)" 
+            },
+            "vsts-mscrm-extract-solution": {
+                "id": "1ef9ea14-e23c-44db-b894-59e559daebe8",
+                "name": "vsts-mscrm-extract-solution-beta",
+                "friendlyName": "Pack Dynamics CRM Solution (Beta)" 
+            },
+            "vsts-mscrm-pack-solution": {
+                "id": "2d08884f-d939-4319-9dc6-16e0a709589e",
+                "name": "vsts-mscrm-pack-solution-beta",
+                "friendlyName": "Extract Dynamics CRM Solution (Beta)" 
+            }
+        }
+    }
+}
