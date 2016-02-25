@@ -119,7 +119,8 @@ gulp.task('pack', ['stamp'], function (callback) {
 });
 
 gulp.task('publish', function (callback) {
-    glob('**/*.vsix', function (err, files) {
+    var globPattern = '**/readify.' + channel.id + '-*.vsix';
+    glob(globPattern, function (err, files) {
         var vsix = files[0];
         var token = args.token;
         exec('node_modules\\.bin\\tfx.cmd extension publish --vsix ' + vsix + ' --token ' + token, function (err, stdout, stderr) {
@@ -135,7 +136,8 @@ gulp.task('publish', function (callback) {
 });
 
 gulp.task('share', function (callback) {
-   glob('**/*.vsix', function (err, files) {
+   var globPattern = '**/readify.' + channel.id + '-*.vsix';
+   glob(globPattern, function (err, files) {
       var vsix = files[0];
       var publisher = args.publisher;
       var token = args.token;
