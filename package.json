@@ -23,12 +23,12 @@
     "team",
     "services"
   ],
-  "author": "Mitch Denny",
+  "author": "Readify",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mitchdenny/vsts-mscrm/issues"
+    "url": "https://github.com/readify/vsts-mscrm/issues"
   },
-  "homepage": "https://github.com/mitchdenny/vsts-mscrm#readme",
+  "homepage": "https://github.com/readify/vsts-mscrm#readme",
   "devDependencies": {
     "glob": "^7.0.0",
     "gulp": "^3.9.1",
