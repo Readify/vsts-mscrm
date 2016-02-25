@@ -17,7 +17,13 @@ var args = minimist(process.argv);
 var channelsContent = fs.readFileSync('channels.json', 'utf8');
 var channels = JSON.parse(channelsContent);
 
-console.log(channels);
+if (args.channel) {
+    var channel = channels[args.channel];
+} else {
+    var channel = channels['default'];
+}
+
+console.log('Selected Channel is: ' + channel.id);
 
 gulp.task('get-version', function (callback) {
     if (args.overrideversion && semver.valid(args.overrideversion)) {
