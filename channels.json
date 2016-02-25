@@ -16,12 +16,12 @@
             "vsts-mscrm-extract-solution": {
                 "id": "66170471-6959-4949-81f7-e224246743bc",
                 "name": "vsts-mscrm-extract-solution",
-                "friendlyName": "Pack Dynamics CRM Solution" 
+                "friendlyName": "Extract Dynamics CRM Solution" 
             },
             "vsts-mscrm-pack-solution": {
                 "id": "d8a13429-d0d4-4aea-837a-82bacbb74cfd",
                 "name": "vsts-mscrm-pack-solution",
-                "friendlyName": "Extract Dynamics CRM Solution" 
+                "friendlyName": "Pack Dynamics CRM Solution" 
             }
         }
     },
@@ -42,12 +42,12 @@
             "vsts-mscrm-extract-solution": {
                 "id": "98069dae-d47b-4904-a466-d06bca03eff5",
                 "name": "vsts-mscrm-extract-solution-alpha",
-                "friendlyName": "Pack Dynamics CRM Solution (Alpha)" 
+                "friendlyName": "Extract Dynamics CRM Solution (Alpha)" 
             },
             "vsts-mscrm-pack-solution": {
                 "id": "a0a6bbb8-6511-45bb-a67e-83d56b533cff",
                 "name": "vsts-mscrm-pack-solution-alpha",
-                "friendlyName": "Extract Dynamics CRM Solution (Alpha)" 
+                "friendlyName": "Pack Dynamics CRM Solution (Alpha)" 
             }
         }
     },
@@ -68,12 +68,12 @@
             "vsts-mscrm-extract-solution": {
                 "id": "1ef9ea14-e23c-44db-b894-59e559daebe8",
                 "name": "vsts-mscrm-extract-solution-beta",
-                "friendlyName": "Pack Dynamics CRM Solution (Beta)" 
+                "friendlyName": "Extract Dynamics CRM Solution (Beta)" 
             },
             "vsts-mscrm-pack-solution": {
                 "id": "2d08884f-d939-4319-9dc6-16e0a709589e",
                 "name": "vsts-mscrm-pack-solution-beta",
-                "friendlyName": "Extract Dynamics CRM Solution (Beta)" 
+                "friendlyName": "Pack Dynamics CRM Solution (Beta)" 
             }
         }
     }
