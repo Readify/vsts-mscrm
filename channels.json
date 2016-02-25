@@ -1,6 +1,7 @@
 {
     "default": {
         "id": "vsts-mscrm",
+        "name": "Dynamics CRM Extension for Team Services",
         "tasks": {
             "vsts-mscrm-export-solution": {
                 "id": "e6a6f2b1-1256-4819-8f1a-5c2b7b4fdd36",
@@ -26,6 +27,7 @@
     },
     "alpha": {
         "id": "vsts-mscrm-alpha",
+        "name": "Dynamics CRM Extension for Team Services (Alpha)",
         "tasks": {
             "vsts-mscrm-export-solution": {
                 "id": "0e2a4722-e43b-4732-95c6-b77fca00f284",
@@ -51,6 +53,7 @@
     },
     "beta": {
         "id": "vsts-mscrm-beta",
+        "name": "Dynamics CRM Extension for Team Services (Beta)",
         "tasks": {
             "vsts-mscrm-export-solution": {
                 "id": "f04efe07-6f7d-4052-976b-984b272678ca",

@@ -1,7 +1,7 @@
 {
 	"manifestVersion": 1,
 	"id": "vsts-mscrm",
-	"name": "Dynamics CRM Extension for Visual Studio Team Services",
+	"name": "Dynamics CRM Extension for Team Services",
 	"version": "0.0.1",
 	"publisher": "readify",
 	"targets": [

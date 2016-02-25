@@ -74,6 +74,7 @@ gulp.task('stamp-manifest', ['get-version'], function (callback) {
 	var manifest = JSON.parse(manifestContents);
 
     manifest.id = channel.id;
+    manifest.name = channel.name;
 	manifest.version = version.MajorMinorPatch;
 
 	manifestContents = JSON.stringify(manifest, null, '\t');
