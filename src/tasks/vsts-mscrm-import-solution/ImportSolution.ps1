@@ -3,6 +3,9 @@ param
 (
     [String] [Parameter(Mandatory = $true)]
     $connectedServiceName,
+	
+	[String] [Parameter(Mandatory = $false]]
+	$instanceName,
     
     [String] [Parameter(Mandatory = $false)]
     $solutionFilePath,
@@ -65,7 +68,13 @@ if ($(Get-Module -Name Microsoft.Xrm.Data.PowerShell) -eq $null) {
 }
 
 Write-Host "Connecting to CRM..."
-$connection = Connect-CrmOnline -ServerUrl $url -Credential $credential
+if ($instanceName -ne $null) {
+	Write-Host "Selecting instance: $($instanceName)"
+	$connection = Get-CrmConnection -ServerUrl $url -Credential $credential -OrganizationName $instanceName
+} else {
+	$connection = Connect-CrmOnline -ServerUrl $url -Credential $credential
+}
+
 Write-Host "ConnectedOrgFriendlyName is: $($connection.ConnectedOrgFriendlyName)"
 Write-Host "ConnectedOrgVersion is: $($connection.ConnectedOrgVersion)"
 
