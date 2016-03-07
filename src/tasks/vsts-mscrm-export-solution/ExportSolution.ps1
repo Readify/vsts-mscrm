@@ -104,11 +104,12 @@ $password = $serviceEndpoint.Authorization.Parameters.Password
 $securePassword = ConvertTo-SecureString $password -AsPlainText -Force
 $credential = New-Object System.Management.Automation.PSCredential -ArgumentList $username, $securePassword
 
-
-if ($(Get-Module -Name Microsoft.Xrm.Data.PowerShell -ListAvailable) -eq $null) {
+if ($(Get-Module -Name Microsoft.Xrm.Data.PowerShell) -eq $null) {
     Write-Host "Installing PowerShell Module..."
-	(new-object Net.WebClient).DownloadString("http://psget.net/GetPsGet.ps1") | iex
-    Install-Module -Name Microsoft.Xrm.Data.PowerShell -Scope CurrentUser -Force -Version $xrmPowerShellModuleVersion
+    # Install-Module -Name Microsoft.Xrm.Data.PowerShell -Scope CurrentUser -Force -Version $xrmPowerShellModuleVersion
+	Import-Module $PSScriptRoot\tools\Microsoft.Xrm.Data.PowerShell\Microsoft.Xrm.Tooling.Connector.dll
+	Import-Module $PSScriptRoot\tools\Microsoft.Xrm.Data.PowerShell\Microsoft.Xrm.Tooling.CrmConnector.Powershell.dll
+	Import-Module $PSScriptRoot\tools\Microsoft.Xrm.Data.PowerShell\Microsoft.Xrm.Data.PowerShell.psm1
 }
 
 Write-Host "Connecting to CRM..."
