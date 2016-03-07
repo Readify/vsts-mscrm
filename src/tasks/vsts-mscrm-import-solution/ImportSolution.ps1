@@ -71,7 +71,7 @@ if ($(Get-Module -Name Microsoft.Xrm.Data.PowerShell) -eq $null) {
 }
 
 Write-Host "Connecting to CRM..."
-if ($instanceName -ne $null) {
+if ($instanceName) {
 	Write-Host "Selecting instance: $($instanceName)"
 	$connection = Get-CrmConnection -ServerUrl $url -Credential $credential -OrganizationName $instanceName
 } else {
