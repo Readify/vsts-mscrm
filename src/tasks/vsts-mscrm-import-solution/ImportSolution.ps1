@@ -96,3 +96,7 @@ $response = Import-CrmSolution `
     -OverwriteUnManagedCustomizations:$overwriteUnManagedCustomizations `
     -SkipDependancyOnProductUpdateCheckOnInstall:$skipDependancyOnProductUpdateCheckOnInstall `
     -PublishChanges:$publishChanges
+	
+Write-Host "Displaying connection details including any import errors..."
+
+Write-Host ($connection | Format-List | Out-String)
