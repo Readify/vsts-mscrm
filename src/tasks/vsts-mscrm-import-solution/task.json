@@ -39,7 +39,7 @@
             "type": "string",
             "label": "CRM instance (friendly name)",
             "required": false,
-            "helpMarkDown": "The name of the CRM instance you want to target. Required when multiple instances exist on the selected server.",
+            "helpMarkDown": "The name of the CRM instance you want to target. Required when multiple instances exist on the selected server."
         },
         {
             "name": "solutionFilePath",
