@@ -78,8 +78,7 @@ if ($instanceName -ne $null) {
 	$connection = Connect-CrmOnline -ServerUrl $url -Credential $credential
 }
 
-Write-Host "ConnectedOrgFriendlyName is: $($connection.ConnectedOrgFriendlyName)"
-Write-Host "ConnectedOrgVersion is: $($connection.ConnectedOrgVersion)"
+Write-Host ($connection | Format-List | Out-String)
 
 Write-Host "Importing Solution..."
 
