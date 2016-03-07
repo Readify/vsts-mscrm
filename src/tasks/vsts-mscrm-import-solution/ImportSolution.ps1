@@ -4,7 +4,7 @@ param
     [String] [Parameter(Mandatory = $true)]
     $connectedServiceName,
 	
-	[String] [Parameter(Mandatory = $false]]
+	[String] [Parameter(Mandatory = $false)]
 	$instanceName,
     
     [String] [Parameter(Mandatory = $false)]
