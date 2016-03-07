@@ -72,6 +72,12 @@ if ($(Get-Module -Name Microsoft.Xrm.Data.PowerShell) -eq $null) {
 }
 
 Write-Host "Connecting to CRM..."
+
+Write-Host "Displaying organisations..."
+
+$organisations = Get-CrmOrganizations -ServerUrl $url -Credential $credential
+Write-Host ($organisations | Format-List | Out-String)
+
 if ($instanceName) {
 	Write-Host "Selecting instance: $($instanceName)"
 	$connection = Get-CrmConnection -ServerUrl $url -Credential $credential -OrganizationName $instanceName
