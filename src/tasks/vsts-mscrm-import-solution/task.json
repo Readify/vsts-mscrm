@@ -35,6 +35,13 @@
             "helpMarkDown": "A generic service configured with CRM details."
         },
         {
+            "name": "instanceName",
+            "type": "string",
+            "label": "CRM instance (friendly name)",
+            "required": false,
+            "helpMarkDown": "The name of the CRM instance you want to target. Required when multiple instances exist on the selected server.",
+        },
+        {
             "name": "solutionFilePath",
             "type": "filePath",
             "label": "Solution File Path",
