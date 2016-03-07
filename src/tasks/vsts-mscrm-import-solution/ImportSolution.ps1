@@ -66,8 +66,7 @@ if ($(Get-Module -Name Microsoft.Xrm.Data.PowerShell) -eq $null) {
     Write-Host "Installing PowerShell Module..."
     # Install-Module -Name Microsoft.Xrm.Data.PowerShell -Scope CurrentUser -Force -Version $xrmPowerShellModuleVersion
 	# We want to do this, but right now the downloadable module has this error: Failed to connect to CRM: Object reference not set to an instance of an object.DeviceAlreadyExists: 0x80041132 
-	Add-Type -Path $PSScriptRoot\tools\Microsoft.Xrm.Data.PowerShell\Microsoft.Xrm.Tooling.CrmConnector.Powershell.dll
-	Add-Type -Path $PSScriptRoot\tools\Microsoft.Xrm.Data.PowerShell\Microsoft.Xrm.Tooling.Connector.dll
+	Import-Module $PSScriptRoot\tools\Microsoft.Xrm.Data.PowerShell\Microsoft.Xrm.Tooling.CrmConnector.Powershell.dll
 	Import-Module $PSScriptRoot\tools\Microsoft.Xrm.Data.PowerShell\Microsoft.Xrm.Data.PowerShell.psm1
 }
 
