@@ -108,11 +108,20 @@ if ($(Get-Module -Name Microsoft.Xrm.Data.PowerShell -ListAvailable) -eq $null) 
 }
 
 Write-Host "Connecting to CRM..."
-$connection = Connect-CrmOnline -ServerUrl $url -Credential $credential
-Write-Host "ConnectedOrgFriendlyName is: $($connection.ConnectedOrgFriendlyName)"
-Write-Host "ConnectedOrgVersion is: $($connection.ConnectedOrgVersion)"
 
-Write-Host "Exporting Solution..."
+Write-Host "Displaying organisations..."
+
+$organisations = Get-CrmOrganizations -ServerUrl $url -Credential $credential
+Write-Host ($organisations | Format-List | Out-String)
+
+if ($instanceName) {
+	Write-Host "Selecting instance: $($instanceName)"
+	$connection = Get-CrmConnection -ServerUrl $url -Credential $credential -OrganizationName $instanceName
+} else {
+	$connection = Connect-CrmOnline -ServerUrl $url -Credential $credential
+}
+
+Write-Host ($connection | Format-List | Out-String)
 
 if ($solutionType -eq "unmanaged") {
     $managed = $false

@@ -35,6 +35,13 @@
             "helpMarkDown": "A generic service configured with CRM details."
         },
         {
+            "name": "instanceName",
+            "type": "string",
+            "label": "CRM Instance (Organization Unique Name)",
+            "required": false,
+            "helpMarkDown": "The unique name of the CRM instance you want to target (in CRM, Settings > Customizations > Developer Resources). Required when multiple instances exist on the selected server."
+        },
+        {
             "name": "solutionName",
             "type": "string",
             "label": "Solution Name",
