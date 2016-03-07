@@ -107,6 +107,7 @@ $credential = New-Object System.Management.Automation.PSCredential -ArgumentList
 
 if ($(Get-Module -Name Microsoft.Xrm.Data.PowerShell -ListAvailable) -eq $null) {
     Write-Host "Installing PowerShell Module..."
+	(new-object Net.WebClient).DownloadString("http://psget.net/GetPsGet.ps1") | iex
     Install-Module -Name Microsoft.Xrm.Data.PowerShell -Scope CurrentUser -Force -Version $xrmPowerShellModuleVersion
 }
 
