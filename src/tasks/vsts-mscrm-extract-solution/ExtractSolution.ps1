@@ -21,3 +21,9 @@ Write-Host "folder is: $folder"
 Write-Host "zipFile is: $zipFile"
 
 .\tools\SolutionPackager.exe /action:Extract /zipfile:"$zipFile" /folder:"$folder"
+
+$solutionXmlPath = "$folder\Other\Solution.xml"
+[xml] $solutionXml = Get-Content $solutionXmlPath
+$node = $solutionXml.SelectSingleNode("ImportExportXml/SolutionManifest/Version")
+$node.Value = "2"
+$solutionXml.Save($solutionXmlPath)
