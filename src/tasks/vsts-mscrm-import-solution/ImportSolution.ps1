@@ -23,7 +23,10 @@ param
     $publishChanges,
     
     [String] [Parameter(Mandatory = $true)]
-    $xrmPowerShellModuleVersion        
+    $xrmPowerShellModuleVersion,
+
+    [String] [Parameter(Mandatory = $true)]
+    $deployTimeoutSeconds=1600
 )
 
 $ErrorActionPreference = "Stop"
@@ -96,6 +99,7 @@ $response = Import-CrmSolution `
     -OverwriteUnManagedCustomizations:$overwriteUnManagedCustomizations `
     -SkipDependancyOnProductUpdateCheckOnInstall:$skipDependancyOnProductUpdateCheckOnInstall `
     -PublishChanges:$publishChanges
+	-MaxWaitTimeInSeconds:$deployTimeoutSeconds
 	
 Write-Host "Displaying connection details including any import errors..."
 
