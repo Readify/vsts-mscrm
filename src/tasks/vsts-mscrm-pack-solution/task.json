@@ -48,6 +48,14 @@
 			"defaultValue": "",
 			"required": true,
 			"helpMarkDown": "The name of the zip file to produce."
+		},
+ 		{
+			"name": "version",
+			"type": "string",
+			"label": "Version",
+			"defaultValue": "",
+			"required": true,
+			"helpMarkDown": "Optional parameter used to stamp the solution with the given version number before packing."
 		}
 	],
 	"execution": {
