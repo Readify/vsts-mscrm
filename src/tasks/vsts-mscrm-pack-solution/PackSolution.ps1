@@ -28,7 +28,7 @@ Write-Host "packageType is: $packageType"
 Write-Host "zipFile is: $zipFile"
 
 if ($version) {
-	$solutionXmlPath = "$PSScriptRoot\$folder\Other\Solution.xml"
+	$solutionXmlPath = "$folder\Other\Solution.xml"
 	[xml] $solutionXml = Get-Content $solutionXmlPath
 	$node = $solutionXml.SelectSingleNode("ImportExportXml/SolutionManifest/Version")
 	$node.'#text' = $version
