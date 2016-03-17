@@ -25,8 +25,8 @@ param
     [String] [Parameter(Mandatory = $true)]
     $xrmPowerShellModuleVersion,
 
-    [String] [Parameter(Mandatory = $true)]
-    $deployTimeoutSeconds=1600
+    [String] [Parameter(Mandatory = $false)]
+    $deployTimeoutSeconds="1600"
 )
 
 $ErrorActionPreference = "Stop"

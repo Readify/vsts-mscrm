@@ -92,6 +92,15 @@
             "required": true,
             "helpMarkDown": "TODO: Help.",
             "groupName": "advanced"
+        },
+        {
+            "name": "deployTimeoutSeconds",
+            "type": "string",
+            "label": "Deployment Timeout Seconds",
+            "defaultValue": "1600",
+            "required": true,
+            "helpMarkDown": "Timeout for the CRM import processs to run, specified in seconds.",
+            "groupName": "advanced"
         }
     ],
 	"execution": {
