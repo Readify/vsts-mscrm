@@ -8,7 +8,10 @@ param
     $packageType,
 
     [String] [Parameter(Mandatory = $true)]
-    $zipFile
+    $zipFile,
+	
+	[String] [Parameter(Mandatory = $false)]
+	$version
 )
 
 $ErrorActionPreference = "Stop"
@@ -23,5 +26,13 @@ import-module "Microsoft.TeamFoundation.DistributedTask.Task.Common"
 Write-Host "folder is: $folder"
 Write-Host "packageType is: $packageType"
 Write-Host "zipFile is: $zipFile"
+
+if ($version) {
+	$solutionXmlPath = "$PSScriptRoot\$folder\Other\Solution.xml"
+	[xml] $solutionXml = Get-Content $solutionXmlPath
+	$node = $solutionXml.SelectSingleNode("ImportExportXml/SolutionManifest/Version")
+	$node.'#text' = $version
+	$solutionXml.Save($solutionXmlPath)
+}
 
 .\tools\SolutionPackager.exe /action:Pack /zipfile:"$zipFile" /packagetype:$packageType /folder:"$folder"
