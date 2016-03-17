@@ -24,4 +24,10 @@ Write-Host "folder is: $folder"
 Write-Host "packageType is: $packageType"
 Write-Host "zipFile is: $zipFile"
 
+$solutionXmlPath = "$folder\Other\Solution.xml"
+[xml] $solutionXml = Get-Content 
+$node = $solutionXml.SelectSingleNode("ImportExportXml/SolutionManifest/Version")
+$node.Value = "2"
+$solutionXml.Save($solutionXmlPath)
+
 .\tools\SolutionPackager.exe /action:Pack /zipfile:"$zipFile" /packagetype:$packageType /folder:"$folder"
