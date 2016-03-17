@@ -98,7 +98,7 @@ $response = Import-CrmSolution `
     -ActivatePlugIns:$activatePlugIns `
     -OverwriteUnManagedCustomizations:$overwriteUnManagedCustomizations `
     -SkipDependancyOnProductUpdateCheckOnInstall:$skipDependancyOnProductUpdateCheckOnInstall `
-    -PublishChanges:$publishChanges
+    -PublishChanges:$publishChanges `
 	-MaxWaitTimeInSeconds:$deployTimeoutSeconds
 	
 Write-Host "Displaying connection details including any import errors..."
