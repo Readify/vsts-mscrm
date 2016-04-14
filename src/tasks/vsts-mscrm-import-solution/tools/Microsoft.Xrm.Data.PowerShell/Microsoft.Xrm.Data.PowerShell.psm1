@@ -3452,7 +3452,7 @@ function Import-CrmSolution{
 				}
 			}
 		} Catch {
-			Write-Error "ImportJob with ID: $importId has encountered an exception: $_ "
+			throw "ImportJob with ID: $importId has encountered an exception: $_ "
 		} Finally{
             $ProcPercent = ([double](Coalesce $ProcPercent 0))
         }
@@ -3474,21 +3474,21 @@ function Import-CrmSolution{
                 ([xml]$import.data).importexportxml.entities.entity|foreach {
                     if($_.result.result -ne $null -and $_.result.result -eq 'failure'){
                         write-output "Name: $($_.LocalizedName) Result: $($_.result.errorcode) Details: $($_.result.errortext)"
-                        write-error "Name: $($_.LocalizedName) Result: $($_.result.errorcode) Details: $($_.result.errortext)"
+                        throw "Name: $($_.LocalizedName) Result: $($_.result.errorcode) Details: $($_.result.errortext)"
                     }
                 }
                 #webresource problems
                 ([xml]$import.data).importexportxml.webResources.webResource|foreach {
                     if($_.result.result -ne $null -and $_.result.result -eq 'failure'){
                         write-output "Name: $($_.LocalizedName) Result: $($_.result.errorcode) Details: $($_.result.errortext)"
-                        write-error "Name: $($_.LocalizedName) Result: $($_.result.errorcode) Details: $($_.result.errortext)"
+                        throw "Name: $($_.LocalizedName) Result: $($_.result.errorcode) Details: $($_.result.errortext)"
                     }
                 }
                 #optionset problems
                 ([xml]$import.data).importexportxml.optionSets.optionset|foreach {
                     if($_.result.result -ne $null -and $_.result.result -eq 'failure'){
                         write-output "Name: $($_.LocalizedName) Result: $($_.result.errorcode) Details: $($_.result.errortext)"
-                        write-error "Name: $($_.LocalizedName) Result: $($_.result.errorcode) Details: $($_.result.errortext)"
+                        throw "Name: $($_.LocalizedName) Result: $($_.result.errorcode) Details: $($_.result.errortext)"
                     }
                 }
             }catch{}
@@ -3518,7 +3518,7 @@ function Import-CrmSolution{
     }
     catch
     {
-        Write-Error $_.Exception
+        throw $_.Exception
     }    
 }
 
@@ -4576,7 +4576,7 @@ function Export-CrmSolution{
         if($solutionRecords.CrmRecords.Count -ne 1)
         {
             $friendlyName = $conn.ConnectedOrgFriendlyName.ToString()
-            Write-Error "Solution with name `"$SolutionName`" in CRM Instance: `"$friendlyName`" not found!"
+            throw "Solution with name `"$SolutionName`" in CRM Instance: `"$friendlyName`" not found!"
             break
         }
         #else PROCEED 
