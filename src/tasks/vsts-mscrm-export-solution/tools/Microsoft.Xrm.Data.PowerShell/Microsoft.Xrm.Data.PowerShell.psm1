@@ -1871,24 +1871,10 @@ function Import-CrmSolution{
         if($ProcPercent -lt 100){
             try{
 				Write-Output "Import job with ID: $importId failed at $ProcPercent complete."
-                #lets try to dump the failure data as a best effort: 
-                ([xml]$import.data).importexportxml.entities.entity|foreach {
-                    if($_.result.result -ne $null -and $_.result.result -eq 'failure'){
-                        Write-Output "Name: $($_.LocalizedName) Result: $($_.result.errorcode) Details: $($_.result.errortext)"
-                    }
-                }
-                #webresource problems
-                ([xml]$import.data).importexportxml.webResources.webResource|foreach {
-                    if($_.result.result -ne $null -and $_.result.result -eq 'failure'){
-                        Write-Output "Name: $($_.LocalizedName) Result: $($_.result.errorcode) Details: $($_.result.errortext)"
-                    }
-                }
-                #optionset problems
-                ([xml]$import.data).importexportxml.optionSets.optionset|foreach {
-                    if($_.result.result -ne $null -and $_.result.result -eq 'failure'){
-                        Write-Output "Name: $($_.LocalizedName) Result: $($_.result.errorcode) Details: $($_.result.errortext)"
-                    }
-                }
+                $errorResults = ([xml]$import.data).SelectNodes("//result[@result='failure']");
+				$errorResults | % {
+					Write-Output "Name: $($_.ParentNode.LocalizedName) Result: $($_.result.errorcode) Details: $($_.result.errortext)"
+				}
             }catch{}
 
             $erroText = "Import result: Job with ID: $importId failed at $ProcPercent percent complete."
