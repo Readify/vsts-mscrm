@@ -1829,58 +1829,44 @@ function Import-CrmSolution{
 
         Write-Host "Import of file completed, waiting on completion of importId: $importId"
         
-		try{
-			while($isProcessing -and $secondsSpentPolling -lt $MaxWaitTimeInSeconds){
-				#delay
-				Start-Sleep -Seconds $pollingDelaySeconds
-				#check the import job for success/fail/inProgress
-				$import = Get-CrmRecord -conn $conn -EntityLogicalName importjob -Id $importId -Fields solutionname,data,completedon,startedon,progress
-				#Option to use Get-CrmRecords so we can force a no-lock to prevent hangs in the retrieve
-				#$import = (Get-CrmRecords -conn $conn -EntityLogicalName importjob -FilterAttribute importjobid -FilterOperator eq -FilterValue $importId -Fields data,completedon,startedon,progress).CrmRecords[0]
-				$importManifest = ([xml]($import).data).importexportxml.solutionManifests.solutionManifest
-				$ProcPercent = [double](Coalesce $import.progress "0")
+		while($isProcessing -and $secondsSpentPolling -lt $MaxWaitTimeInSeconds){
+			#delay
+			Start-Sleep -Seconds $pollingDelaySeconds
+			#check the import job for success/fail/inProgress
+			$import = Get-CrmRecord -conn $conn -EntityLogicalName importjob -Id $importId -Fields solutionname,data,completedon,startedon,progress
+			#Option to use Get-CrmRecords so we can force a no-lock to prevent hangs in the retrieve
+			#$import = (Get-CrmRecords -conn $conn -EntityLogicalName importjob -FilterAttribute importjobid -FilterOperator eq -FilterValue $importId -Fields data,completedon,startedon,progress).CrmRecords[0]
+			$importManifest = ([xml]($import).data).importexportxml.solutionManifests.solutionManifest
+			$ProcPercent = [double](Coalesce $import.progress "0")
 
-				#Check for import completion 
-				if($import.completedon -eq $null -and $importManifest.result -ne "success"){
-					$isProcessing = $true
-					$secondsSpentPolling = ([Int]((Get-Date) - $pollingStart).TotalSeconds)
-					Write-Output "$($secondsSPentPolling.ToString("000")) seconds of max: $MaxWaitTimeInSeconds ... ImportJob%: $ProcPercent"
-				}
-				else{
-					Write-Verbose "Processing Completed at: $($import.completedon)"
-					$isProcessing = $false
-					break
-				}
+			#Check for import completion 
+			if($import.completedon -eq $null -and $importManifest.result -ne "success"){
+				$isProcessing = $true
+				$secondsSpentPolling = ([Int]((Get-Date) - $pollingStart).TotalSeconds)
+				Write-Output "$($secondsSPentPolling.ToString("000")) seconds of max: $MaxWaitTimeInSeconds ... ImportJob%: $ProcPercent"
 			}
-			
-			
-			#User provided timeout and exit function with an error
-			if($secondsSpentPolling -gt $MaxWaitTimeInSeconds){
-				Write-Output "Import-CrmSolution halted due to exceeding the maximum timeout of $MaxWaitTimeInSeconds."
+			else{
+				Write-Verbose "Processing Completed at: $($import.completedon)"
+				$isProcessing = $false
+				break
 			}
-			
-			Write-Host "Debug: import manifest"
-			Write-Host ($importManifest | Format-List | Out-String)
-			Write-Host "Debug: import object"
-			Write-Host ($import | Format-List | Out-String)
-
-				
-		} Catch {
-			throw "ImportJob with ID: $importId has encountered an exception: $_ "
-		} Finally{
-			$ProcPercent = ([double](Coalesce $ProcPercent 0))
 		}
+		
+		
+		#User provided timeout and exit function with an error
+		if($secondsSpentPolling -gt $MaxWaitTimeInSeconds){
+			Write-Output "Import-CrmSolution halted due to exceeding the maximum timeout of $MaxWaitTimeInSeconds."
+		}
+		
+		Write-Host "Debug: import manifest"
+		Write-Host ($importManifest | Format-List | Out-String)
+		Write-Host "Debug: import object"
+		Write-Host ($import | Format-List | Out-String)
 			
 		#detect a failure by a failure result OR the percent being less than 100%
-        if($importresult.result -eq "failure") #Must look at %age instead of this result as the result is usually wrong!
-        {
-            Write-Output "Import result: $($importManifest.result) - job with ID: $importId failed at $ProcPercent complete."
-            throw $importresult.errortext
-        }
-        elseif($ProcPercent -lt 100){
+        if($ProcPercent -lt 100){
             try{
 				Write-Output "Import job with ID: $importId failed at $ProcPercent complete."
-				Write-Output $importresult.errortext
                 #lets try to dump the failure data as a best effort: 
                 ([xml]$import.data).importexportxml.entities.entity|foreach {
                     if($_.result.result -ne $null -and $_.result.result -eq 'failure'){
