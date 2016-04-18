@@ -1847,8 +1847,7 @@ function Import-CrmSolution{
 					Write-Output "$($secondsSPentPolling.ToString("000")) seconds of max: $MaxWaitTimeInSeconds ... ImportJob%: $ProcPercent"
 				}
 				else{
-					Write-Verbose "Processing Completed at: $($import.completedon)" 
-					$ProcPercent = 100.0
+					Write-Verbose "Processing Completed at: $($import.completedon)"
 					$isProcessing = $false
 					break
 				}
@@ -1860,7 +1859,9 @@ function Import-CrmSolution{
 				Write-Output "Import-CrmSolution halted due to exceeding the maximum timeout of $MaxWaitTimeInSeconds."
 			}
 			
+			Write-Host "Debug: import manifest"
 			Write-Host ($importManifest | Format-List | Out-String)
+			Write-Host "Debug: import object"
 			Write-Host ($import | Format-List | Out-String)
 
 				
