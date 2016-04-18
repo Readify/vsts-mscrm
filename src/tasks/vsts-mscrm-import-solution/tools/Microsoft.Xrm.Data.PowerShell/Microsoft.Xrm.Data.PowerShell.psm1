@@ -1863,10 +1863,10 @@ function Import-CrmSolution{
 			Write-Output "Import-CrmSolution halted due to exceeding the maximum timeout of $MaxWaitTimeInSeconds."
 		}
 		
-		Write-Host "Debug: import manifest"
-		Write-Host ($importManifest | Format-List | Out-String)
-		Write-Host "Debug: import object"
-		Write-Host ($import | Format-List | Out-String)
+		Write-Verbose "Debug: import manifest"
+		Write-Verbose ($importManifest | Format-List | Out-String)
+		Write-Verbose "Debug: import object"
+		Write-Verbose ($import | Format-List | Out-String)
 			
 		#detect a failure by a failure result OR the percent being less than 100%
         if($ProcPercent -lt 100 -and $errorResults.Count -gt 0){				
