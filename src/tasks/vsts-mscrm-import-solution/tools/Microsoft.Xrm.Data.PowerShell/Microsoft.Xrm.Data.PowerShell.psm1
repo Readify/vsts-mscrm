@@ -1872,25 +1872,24 @@ function Import-CrmSolution{
         }
         elseif($ProcPercent -lt 100){
             try{
+				Write-Verbose "Import job with ID: $importId failed at $ProcPercent complete."
+				Write-Output $importresult.errortext
                 #lets try to dump the failure data as a best effort: 
                 ([xml]$import.data).importexportxml.entities.entity|foreach {
                     if($_.result.result -ne $null -and $_.result.result -eq 'failure'){
                         write-output "Name: $($_.LocalizedName) Result: $($_.result.errorcode) Details: $($_.result.errortext)"
-                        throw "Name: $($_.LocalizedName) Result: $($_.result.errorcode) Details: $($_.result.errortext)"
                     }
                 }
                 #webresource problems
                 ([xml]$import.data).importexportxml.webResources.webResource|foreach {
                     if($_.result.result -ne $null -and $_.result.result -eq 'failure'){
                         write-output "Name: $($_.LocalizedName) Result: $($_.result.errorcode) Details: $($_.result.errortext)"
-                        throw "Name: $($_.LocalizedName) Result: $($_.result.errorcode) Details: $($_.result.errortext)"
                     }
                 }
                 #optionset problems
                 ([xml]$import.data).importexportxml.optionSets.optionset|foreach {
                     if($_.result.result -ne $null -and $_.result.result -eq 'failure'){
                         write-output "Name: $($_.LocalizedName) Result: $($_.result.errorcode) Details: $($_.result.errortext)"
-                        throw "Name: $($_.LocalizedName) Result: $($_.result.errorcode) Details: $($_.result.errortext)"
                     }
                 }
             }catch{}

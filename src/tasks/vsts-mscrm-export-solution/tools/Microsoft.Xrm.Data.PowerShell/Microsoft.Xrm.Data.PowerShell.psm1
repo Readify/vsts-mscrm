@@ -1802,6 +1802,7 @@ function Import-CrmSolution{
 		[parameter(Mandatory=$false, Position=6)]
         [int64]$MaxWaitTimeInSeconds = 900
     )
+    
 	$conn = VerifyCrmConnectionParam $conn
 	$importId = [guid]::Empty
     try
@@ -1810,19 +1811,24 @@ function Import-CrmSolution{
         {
             throw [System.IO.FileNotFoundException] "$SolutionFilePath not found."
         }
+        
         $tmpDest = $conn.CrmConnectOrgUriActual
         Write-Host "Importing solution file $SolutionFilePath into: $tmpDest" 
         Write-Verbose "OverwriteCustomizations: $OverwriteUnManagedCustomizations"
         Write-Verbose "SkipDependancyCheck: $SkipDependancyOnProductUpdateCheckOnInstall"
         Write-Verbose "Maximum seconds to poll for successful completion: $MaxWaitTimeInSeconds"
         Write-Verbose "Calling .ImportSolutionToCrm() this process can take minutes..."
+
         $result = $conn.ImportSolutionToCrm($SolutionFilePath, [ref]$importId, $ActivatePlugIns,
                 $OverwriteUnManagedCustomizations, $SkipDependancyOnProductUpdateCheckOnInstall)
+		
         $pollingStart = Get-Date
         $isProcessing = $true
 		$secondsSpentPolling = 0
         $pollingDelaySeconds = 5
+
         Write-Host "Import of file completed, waiting on completion of importId: $importId"
+        
 		try{
 			while($isProcessing -and $secondsSpentPolling -lt $MaxWaitTimeInSeconds){
 				#delay
@@ -1848,14 +1854,16 @@ function Import-CrmSolution{
 				}
 			}
 		} Catch {
-			Write-Error "ImportJob with ID: $importId has encountered an exception: $_ "
+			throw "ImportJob with ID: $importId has encountered an exception: $_ "
 		} Finally{
             $ProcPercent = ([double](Coalesce $ProcPercent 0))
         }
+		
         #User provided timeout and exit function with an error
 	    if($secondsSpentPolling -gt $MaxWaitTimeInSeconds){
 			throw "Import-CrmSolution halted due to exceeding the maximum timeout of $MaxWaitTimeInSeconds."
 		}
+
 		#detect a failure by a failure result OR the percent being less than 100%
         if($importresult.result -eq "failure") #Must look at %age instead of this result as the result is usually wrong!
         {
@@ -1864,25 +1872,24 @@ function Import-CrmSolution{
         }
         elseif($ProcPercent -lt 100){
             try{
+				Write-Verbose "Import job with ID: $importId failed at $ProcPercent complete."
+				Write-Output $importresult.errortext
                 #lets try to dump the failure data as a best effort: 
                 ([xml]$import.data).importexportxml.entities.entity|foreach {
                     if($_.result.result -ne $null -and $_.result.result -eq 'failure'){
                         write-output "Name: $($_.LocalizedName) Result: $($_.result.errorcode) Details: $($_.result.errortext)"
-                        write-error "Name: $($_.LocalizedName) Result: $($_.result.errorcode) Details: $($_.result.errortext)"
                     }
                 }
                 #webresource problems
                 ([xml]$import.data).importexportxml.webResources.webResource|foreach {
                     if($_.result.result -ne $null -and $_.result.result -eq 'failure'){
                         write-output "Name: $($_.LocalizedName) Result: $($_.result.errorcode) Details: $($_.result.errortext)"
-                        write-error "Name: $($_.LocalizedName) Result: $($_.result.errorcode) Details: $($_.result.errortext)"
                     }
                 }
                 #optionset problems
                 ([xml]$import.data).importexportxml.optionSets.optionset|foreach {
                     if($_.result.result -ne $null -and $_.result.result -eq 'failure'){
                         write-output "Name: $($_.LocalizedName) Result: $($_.result.errorcode) Details: $($_.result.errortext)"
-                        write-error "Name: $($_.LocalizedName) Result: $($_.result.errorcode) Details: $($_.result.errortext)"
                     }
                 }
             }catch{}
@@ -1912,7 +1919,7 @@ function Import-CrmSolution{
     }
     catch
     {
-        Write-Error $_.Exception
+        throw $_.Exception
     }    
 }
 
