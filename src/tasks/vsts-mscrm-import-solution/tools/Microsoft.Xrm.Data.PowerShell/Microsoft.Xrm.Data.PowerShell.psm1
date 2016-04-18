@@ -1847,7 +1847,7 @@ function Import-CrmSolution{
 			}
 			else{
 				Write-Output "Processing Completed at: $($import.completedon)"
-				if ($importManifest.result.result -ne "success")
+				if ($importManifest.result.result -eq "success")
 				{
 					$ProcPercent = 100
 				}
