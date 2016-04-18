@@ -1847,7 +1847,7 @@ function Import-CrmSolution{
 			}
 			else{
 				Write-Output "Processing Completed at: $($import.completedon)"
-				if ($importManifest.result.result -ne "success")
+				if ($importManifest.result.result -eq "success")
 				{
 					$ProcPercent = 100
 				}
@@ -1873,9 +1873,11 @@ function Import-CrmSolution{
 				Write-Output "Import job with ID: $importId failed at $ProcPercent complete."
                 $errorResults = ([xml]$import.data).SelectNodes("//result[@result='failure']");
 				$errorResults | % {
-					Write-Output "Name: $($_.ParentNode.LocalizedName) Result: $($_.result.errorcode) Details: $($_.result.errortext)"
+					Write-Output "Name: $($_.ParentNode.LocalizedName) Result: $($_.errorcode) Details: $($_.errortext)"
 				}
-            }catch{}
+            }catch{
+				Write-Output $_.Exception				
+			}
 
             $erroText = "Import result: Job with ID: $importId failed at $ProcPercent percent complete."
             throw $erroText
