@@ -1856,6 +1856,7 @@ function Import-CrmSolution{
 			}
 		}
 		
+		$errorResults = ([xml]$import.data).SelectNodes("//result[@result='failure']");
 		
 		#User provided timeout and exit function with an error
 		if($secondsSpentPolling -gt $MaxWaitTimeInSeconds){
@@ -1868,10 +1869,8 @@ function Import-CrmSolution{
 		Write-Host ($import | Format-List | Out-String)
 			
 		#detect a failure by a failure result OR the percent being less than 100%
-        if($ProcPercent -lt 100){
+        if($ProcPercent -lt 100 && $errorResults.Count -gt 0){				
             try{
-				Write-Output "Import job with ID: $importId failed at $ProcPercent complete."
-                $errorResults = ([xml]$import.data).SelectNodes("//result[@result='failure']");
 				$errorResults | % {
 					Write-Output "Name: $($_.ParentNode.LocalizedName) Result: $($_.errorcode) Details: $($_.errortext)"
 				}
