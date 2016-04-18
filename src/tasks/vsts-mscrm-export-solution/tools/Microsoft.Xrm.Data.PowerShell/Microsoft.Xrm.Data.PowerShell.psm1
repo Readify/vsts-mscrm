@@ -1861,35 +1861,35 @@ function Import-CrmSolution{
 		
         #User provided timeout and exit function with an error
 	    if($secondsSpentPolling -gt $MaxWaitTimeInSeconds){
-			throw "Import-CrmSolution halted due to exceeding the maximum timeout of $MaxWaitTimeInSeconds."
+			Write-Output "Import-CrmSolution halted due to exceeding the maximum timeout of $MaxWaitTimeInSeconds."
 		}
 
 		#detect a failure by a failure result OR the percent being less than 100%
         if($importresult.result -eq "failure") #Must look at %age instead of this result as the result is usually wrong!
         {
-            Write-Verbose "Import result: $($importManifest.result) - job with ID: $importId failed at $ProcPercent complete."
+            Write-Output "Import result: $($importManifest.result) - job with ID: $importId failed at $ProcPercent complete."
             throw $importresult.errortext
         }
         elseif($ProcPercent -lt 100){
             try{
-				Write-Verbose "Import job with ID: $importId failed at $ProcPercent complete."
+				Write-Output "Import job with ID: $importId failed at $ProcPercent complete."
 				Write-Output $importresult.errortext
                 #lets try to dump the failure data as a best effort: 
                 ([xml]$import.data).importexportxml.entities.entity|foreach {
                     if($_.result.result -ne $null -and $_.result.result -eq 'failure'){
-                        write-output "Name: $($_.LocalizedName) Result: $($_.result.errorcode) Details: $($_.result.errortext)"
+                        Write-Output "Name: $($_.LocalizedName) Result: $($_.result.errorcode) Details: $($_.result.errortext)"
                     }
                 }
                 #webresource problems
                 ([xml]$import.data).importexportxml.webResources.webResource|foreach {
                     if($_.result.result -ne $null -and $_.result.result -eq 'failure'){
-                        write-output "Name: $($_.LocalizedName) Result: $($_.result.errorcode) Details: $($_.result.errortext)"
+                        Write-Output "Name: $($_.LocalizedName) Result: $($_.result.errorcode) Details: $($_.result.errortext)"
                     }
                 }
                 #optionset problems
                 ([xml]$import.data).importexportxml.optionSets.optionset|foreach {
                     if($_.result.result -ne $null -and $_.result.result -eq 'failure'){
-                        write-output "Name: $($_.LocalizedName) Result: $($_.result.errorcode) Details: $($_.result.errortext)"
+                        Write-Output "Name: $($_.LocalizedName) Result: $($_.result.errorcode) Details: $($_.result.errortext)"
                     }
                 }
             }catch{}
@@ -1904,7 +1904,7 @@ function Import-CrmSolution{
             if($managedsolution -ne 1)
             {
                 if($PublishChanges){
-                    Write-Verbose "PublishChanges set, executing: Publish-CrmAllCustomization using the same connection."
+                    Write-Output "PublishChanges set, executing: Publish-CrmAllCustomization using the same connection."
                     Publish-CrmAllCustomization -conn $conn
                 }
                 else{
