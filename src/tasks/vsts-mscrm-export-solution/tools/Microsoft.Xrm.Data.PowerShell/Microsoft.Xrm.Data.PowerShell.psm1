@@ -1840,13 +1840,17 @@ function Import-CrmSolution{
 			$ProcPercent = [double](Coalesce $import.progress "0")
 
 			#Check for import completion 
-			if($import.completedon -eq $null -and $importManifest.result -ne "success"){
+			if($import.completedon -eq $null -and $importManifest.result.result -ne "success"){
 				$isProcessing = $true
 				$secondsSpentPolling = ([Int]((Get-Date) - $pollingStart).TotalSeconds)
 				Write-Output "$($secondsSPentPolling.ToString("000")) seconds of max: $MaxWaitTimeInSeconds ... ImportJob%: $ProcPercent"
 			}
 			else{
-				Write-Verbose "Processing Completed at: $($import.completedon)"
+				Write-Output "Processing Completed at: $($import.completedon)"
+				if ($importManifest.result.result -ne "success")
+				{
+					$ProcPercent = 100
+				}
 				$isProcessing = $false
 				break
 			}
