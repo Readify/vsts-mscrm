@@ -1853,17 +1853,23 @@ function Import-CrmSolution{
 					break
 				}
 			}
+			
+			
+			#User provided timeout and exit function with an error
+			if($secondsSpentPolling -gt $MaxWaitTimeInSeconds){
+				Write-Output "Import-CrmSolution halted due to exceeding the maximum timeout of $MaxWaitTimeInSeconds."
+			}
+			
+			Write-Host ($importManifest | Format-List | Out-String)
+			Write-Host ($import | Format-List | Out-String)
+
+				
 		} Catch {
 			throw "ImportJob with ID: $importId has encountered an exception: $_ "
 		} Finally{
-            $ProcPercent = ([double](Coalesce $ProcPercent 0))
-        }
-		
-        #User provided timeout and exit function with an error
-	    if($secondsSpentPolling -gt $MaxWaitTimeInSeconds){
-			Write-Output "Import-CrmSolution halted due to exceeding the maximum timeout of $MaxWaitTimeInSeconds."
+			$ProcPercent = ([double](Coalesce $ProcPercent 0))
 		}
-
+			
 		#detect a failure by a failure result OR the percent being less than 100%
         if($importresult.result -eq "failure") #Must look at %age instead of this result as the result is usually wrong!
         {
