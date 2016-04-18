@@ -1869,7 +1869,7 @@ function Import-CrmSolution{
 		Write-Host ($import | Format-List | Out-String)
 			
 		#detect a failure by a failure result OR the percent being less than 100%
-        if($ProcPercent -lt 100 && $errorResults.Count -gt 0){				
+        if($ProcPercent -lt 100 -and $errorResults.Count -gt 0){				
             try{
 				$errorResults | % {
 					Write-Output "Name: $($_.ParentNode.LocalizedName) Result: $($_.errorcode) Details: $($_.errortext)"
